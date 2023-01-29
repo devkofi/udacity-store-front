@@ -37,7 +37,6 @@ const create = async (req: Request, res: Response): Promise<void> =>{
   
 }
 
-
 const deleteOrder = async (req: Request, res:Response): Promise<void> =>{
     const deleteCurrentOrder = order.deleteCurrentOrder(req.params.id).then((item)=>{
         res.json(item);
@@ -65,7 +64,6 @@ const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
     }
 
 }
-
 
 const order_routes = (app: express.Application): void =>{
     app.get('/orders',verifyAuthToken, index);
