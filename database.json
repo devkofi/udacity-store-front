@@ -2,7 +2,7 @@
     "dev": {
       "driver": "pg",
       "host": "127.0.0.1",
-      "database": "booksdb",
+      "database": "storedb",
       "user": "postgres",
       "password": "root"
     },
