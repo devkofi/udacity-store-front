@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var product_1 = require("../models/product");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var popularProducts_1 = require("../service/popularProducts");
@@ -89,7 +89,7 @@ var update = function (req, res) { return __awaiter(void 0, void 0, void 0, func
 var deleteProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var product;
     return __generator(this, function (_a) {
-        product = create_product.delete(req.params.id).then(function (item) {
+        product = create_product["delete"](req.params.id).then(function (item) {
             res.send('Successfully Deleted item');
         });
         return [2 /*return*/];
@@ -120,7 +120,7 @@ var verifyAuthToken = function (req, res, next) {
             var verify = function () { return __awaiter(void 0, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, jsonwebtoken_1.default.verify(token, TOKEN_SECRET)];
+                        case 0: return [4 /*yield*/, jsonwebtoken_1["default"].verify(token, TOKEN_SECRET)];
                         case 1:
                             _a.sent();
                             return [2 /*return*/];
@@ -146,6 +146,6 @@ var product_routes = function (app) {
     app.post('/products', verifyAuthToken, create); //create
     app.get('/products/:id', show); //show
     app.put('/products/update', verifyAuthToken, update); //update
-    app.delete('/products/:id', verifyAuthToken, deleteProduct); //delete
+    app["delete"]('/products/:id', verifyAuthToken, deleteProduct); //delete
 };
-exports.default = product_routes;
+exports["default"] = product_routes;

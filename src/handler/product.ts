@@ -39,7 +39,6 @@ const update = async (req: Request, res: Response): Promise<void> =>{
     });
 }
 
-
 const deleteProduct = async (req: Request, res: Response): Promise<void> =>{
     const product = create_product.delete(req.params.id).then((item)=>{
         res.send('Successfully Deleted item');

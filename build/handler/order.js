@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var order_1 = require("../models/order");
 var completedOrders_1 = require("../service/completedOrders");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -116,7 +116,7 @@ var verifyAuthToken = function (req, res, next) {
             var verify = function () { return __awaiter(void 0, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, jsonwebtoken_1["default"].verify(token, TOKEN_SECRET)];
+                        case 0: return [4 /*yield*/, jsonwebtoken_1.default.verify(token, TOKEN_SECRET)];
                         case 1:
                             _a.sent();
                             return [2 /*return*/];
@@ -140,6 +140,6 @@ var order_routes = function (app) {
     app.get('/orders/:id', verifyAuthToken, show);
     app.get('/orders/:user_id/:order_status', completedOrders);
     app.post('/orders', verifyAuthToken, create);
-    app["delete"]('/orders/:id', verifyAuthToken, deleteOrder);
+    app.delete('/orders/:id', verifyAuthToken, deleteOrder);
 };
-exports["default"] = order_routes;
+exports.default = order_routes;
