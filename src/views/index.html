@@ -9,54 +9,67 @@
     <title>API Development</title>
 </head>
 <body>
-    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <form class="uk-form-horizontal uk-margin-large" method="post" action="/create">
+    <div class="uk-section-primary uk-preserve-color">
 
-            <div class="uk-margin">
-                <label class="uk-form-label" for="title">Title</label>
-                <div class="uk-form-controls">
-                    <input name="title" class="uk-input" id="title" type="text" placeholder="Title">
-                </div>
-            </div>
+        <div uk-sticky="start: 200; animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light">
     
-            <div class="uk-margin">
-                <label class="uk-form-label" for="author">Author</label>
-                <div class="uk-form-controls">
-                    <input name="author" class="uk-input" id="author" type="text" placeholder="Author">
-                </div>
-            </div>
+            <nav class="uk-navbar-container" uk-navbar>
 
-            <div class="uk-margin">
-                <label class="uk-form-label" for="pages">Number of Pages</label>
-                <div class="uk-form-controls">
-                    <input name="pages" class="uk-input" id="pages" type="number" placeholder="Author">
+                <div class="uk-navbar-left">
+            
+                    <ul class="uk-navbar-nav">
+                        <li>&nbsp;&nbsp;</li>
+                        <li class="uk-active"><a href="/">Home</a></li>
+                        <li>
+                            <a href="/products">Products</a>
+                            <!-- <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-active"><a href="#">Active</a></li>
+                                    <li><a href="#">S</a></li>
+                                    <li><a href="#">Item</a></li>
+                                </ul>
+                            </div> -->
+                        </li>
+                        <li><a href="/orders">Orders</a></li>
+                    </ul>
+            
                 </div>
-            </div>
-
-            <div class="uk-margin">
-                <label class="uk-form-label" for="type">Book Type</label>
-                <div class="uk-form-controls">
-                    <select name="type" class="uk-select" id="type">
-                        <option>Comedy</option>
-                        <option>Drama</option>
-                        <option>Action</option>
-                        <option>Horror</option>
-                        <option>Cartoons</option>
-                        <option>Hollywood</option>
-                    </select>
+            
+                <div class="uk-navbar-right">
+            
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="/users/login">Login</a></li>
+                        
+                        <li><a href="/users/signup">Sign Up</a></li>
+                        <li>&nbsp;&nbsp;</li>
+                    </ul>
+            
                 </div>
-            </div>
+            
+            </nav>
+        </div>
+    
+        <div class="uk-section uk-light">
+            <div class="uk-container">
+    
+                <h1 class="uk-heading-large uk-text-center">Udacity Store Front</h1>
 
-            <div class="uk-margin">
-                <textarea name="summary" class="uk-textarea" rows="5" placeholder="Summary" aria-label="Textarea"></textarea>
+                <br>
+
+                <h1 class="uk-heading-small">Getting Started</h1>
+                <p>This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run <b>yarn</b> in your terminal at the project root.</p>
+    
+                <h1 class="uk-heading-small">Plan to Meet Requirements</h1>
+                <p>
+                    In this repo there is a <b>REQUIREMENTS.md</b> document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API. 
+
+Your first task is to read the requirements and update the document with the following:
+- Determine the RESTful route for each endpoint listed. Add the RESTful route and HTTP verb to the document so that the frontend developer can begin to build their fetch requests.    
+                </p>
+    
             </div>
-        
-        
-            <div class="uk-margin">
-                <button class="uk-button uk-button-primary uk-button-large" type="submit">Create</button>
-            </div>
-        
-        </form>
+        </div>
+    
     </div>
     
     <script src="js/vendor/uikit.min.js"></script>

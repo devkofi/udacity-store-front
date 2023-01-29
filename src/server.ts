@@ -1,34 +1,48 @@
-import express from "express";
-import fs from "fs";
-import path from "path";
-//const express = require('express')
+import express, {Request, Response, NextFunction} from "express";
+import path from 'path';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import bodyParser from "body-parser";
+import product_routes from "./handler/product";
+import order_routes from "./handler/order";
+import user_routes from "./handler/user";
+import jwt from 'jsonwebtoken';
+import cookieParser from 'cookie-parser';
 const app = express();
 const port = 3000;
-// const widths: number[] = [];
-// const heights: number[] = [];
-const rootFolder: string = path.resolve(__dirname);
-const views = rootFolder + path.normalize("/views/");
-//const originalImgPath = rootFolder + path.normalize("/public/img/original/");
-//const file = fs.readdirSync(originalImgPath)[0];
 
+const {ENV}= process.env;
+const rootFolder: string = path.resolve(__dirname) + path.normalize("/views/");
 app.use(express.static(rootFolder));
+app.use(cookieParser());
 
-const middleware = function (
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
-): void {
-  
-};
+//Enable cors for all routes
+app.use(cors());
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.sendFile(rootFolder + path.normalize("/public/displayImage.html"));
+// parse application/json
+app.use(bodyParser.json())
+
+app.get('/', (req: express.Request, res: express.Response)=>{
+  res.sendFile(rootFolder + "login.html");
 });
 
+app.get('/users/login', (req: express.Request, res: express.Response)=>{
+  res.sendFile(rootFolder + "login.html")
+});
+
+app.get('/users/signup', (req: express.Request, res: express.Response)=>{
+  res.sendFile(rootFolder + "signup.html")
+});
+
+
+
+user_routes(app);
+product_routes(app);
+order_routes(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port ${port}`)
 });
-
-export default app;
