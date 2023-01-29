@@ -40,9 +40,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var order_1 = require("../models/order");
+var completedOrders_1 = require("../service/completedOrders");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var _a = process.env, ENV = _a.ENV, BCRYPT_PEPPER = _a.BCRYPT_PEPPER, TOKEN_SECRET = _a.TOKEN_SECRET, SALT_ROUNDS = _a.SALT_ROUNDS;
 var order = new order_1.Order(ENV);
+var completedOrder = new completedOrders_1.CompletedOrder(ENV);
 var index = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var index;
     return __generator(this, function (_a) {
@@ -94,6 +96,19 @@ var deleteOrder = function (req, res) { return __awaiter(void 0, void 0, void 0,
         return [2 /*return*/];
     });
 }); };
+var completedOrders = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var show;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, completedOrder.show(req.params.id, req.params.status).then(function (item) {
+                    res.json(item);
+                })];
+            case 1:
+                show = _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); };
 var verifyAuthToken = function (req, res, next) {
     var token = req.cookies.token;
     try {
@@ -123,6 +138,7 @@ var verifyAuthToken = function (req, res, next) {
 var order_routes = function (app) {
     app.get('/orders', verifyAuthToken, index);
     app.get('/orders/:id', verifyAuthToken, show);
+    app.get('/orders/:id/status', verifyAuthToken, completedOrders);
     app.post('/orders', verifyAuthToken, create);
     app["delete"]('/orders/:id', verifyAuthToken, deleteOrder);
 };

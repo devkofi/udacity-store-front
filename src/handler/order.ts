@@ -1,5 +1,6 @@
 import express, {NextFunction, Request, Response} from 'express';
 import {Order, OrderType} from '../models/order';
+import { CompletedOrder } from '../service/completedOrders';
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
@@ -9,6 +10,7 @@ import path from 'path';
 const {ENV,BCRYPT_PEPPER, TOKEN_SECRET, SALT_ROUNDS} = process.env;
 
 const order = new Order((ENV as unknown) as string);
+const completedOrder = new CompletedOrder((ENV as unknown) as string)
 
 const index = async (req: Request, res: Response): Promise<void> =>{
     const index = await order.index().then((item)=>{
@@ -43,6 +45,12 @@ const deleteOrder = async (req: Request, res:Response): Promise<void> =>{
     })
 }
 
+const completedOrders = async (req: Request, res: Response): Promise<void> =>{
+    const show = await completedOrder.show(req.params.id, req.params.status).then((item)=>{
+        res.json(item);
+    })
+}
+
 const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
     const token = req.cookies.token;
     
@@ -68,6 +76,7 @@ const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
 const order_routes = (app: express.Application): void =>{
     app.get('/orders',verifyAuthToken, index);
     app.get('/orders/:id', verifyAuthToken, show);
+    app.get('/orders/:id/status', verifyAuthToken, completedOrders);
     app.post('/orders',verifyAuthToken, create)
     app.delete('/orders/:id',verifyAuthToken, deleteOrder);
 
