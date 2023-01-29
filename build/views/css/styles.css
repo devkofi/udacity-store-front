@@ -1,0 +1,11 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 5% 20%;
+}
+
+#login{
+    margin: 5% 15%;
+}
