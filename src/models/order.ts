@@ -49,7 +49,7 @@ export class Order{
             const sql = `INSERT INTO orders(product_id, product_quantity, user_id, order_status) VALUES ($1, $2, $3, $4)`;
             const conn = this.connection();
             await conn.connect();
-            const result = await conn.query(sql, [order.product_id, order.product_quantity, order.user_id, order.order_status]);
+            const result = await conn.query(sql, [order.product_id, order.product_quantity, order.user_id, order.order_status.toLowerCase()]);
             const output = await conn.query('SELECT * FROM orders WHERE product_id=($1)', [order.product_id]);
             
             conn.end();

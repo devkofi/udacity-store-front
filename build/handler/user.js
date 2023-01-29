@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var user_1 = require("../models/user");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var bcrypt_1 = __importDefault(require("bcrypt"));
@@ -98,7 +98,7 @@ var signUp = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 return [4 /*yield*/, user.signUp(temp_user)];
             case 2:
                 newUser = _a.sent();
-                token = jsonwebtoken_1["default"].sign({ user: newUser }, process.env.TOKEN_SECRET);
+                token = jsonwebtoken_1.default.sign({ user: newUser }, process.env.TOKEN_SECRET);
                 console.log(token);
                 res.send("Successfully created user");
                 return [3 /*break*/, 4];
@@ -127,17 +127,18 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 return [4 /*yield*/, user.authenticate({ email: req.body.email, password: req.body.password }).then(function (item) {
-                        var token = jsonwebtoken_1["default"].sign({ user: item }, process.env.TOKEN_SECRET, { algorithm: 'HS256' });
+                        var token = jsonwebtoken_1.default.sign({ user: item }, process.env.TOKEN_SECRET, { algorithm: 'HS256' });
                         res.cookie('token', token, {
                             httpOnly: true,
                             //secure: true,
-                            maxAge: (5000 * 60)
+                            maxAge: (5000 * 60),
+                            //signed: true
                         });
                         console.log(token);
                         var header = function () { return res.set('authorization', token); };
                         header();
                         console.log(item);
-                        if (bcrypt_1["default"].compareSync(req.body.password + BCRYPT_PEPPER, item === null || item === void 0 ? void 0 : item.password)) {
+                        if (bcrypt_1.default.compareSync(req.body.password + BCRYPT_PEPPER, item === null || item === void 0 ? void 0 : item.password)) {
                             res.status(200);
                             res.send("Login Successful");
                         }
@@ -164,7 +165,7 @@ var verifyAuthToken = function (req, res, next) {
             var verify = function () { return __awaiter(void 0, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, jsonwebtoken_1["default"].verify(token, TOKEN_SECRET)];
+                        case 0: return [4 /*yield*/, jsonwebtoken_1.default.verify(token, TOKEN_SECRET)];
                         case 1:
                             _a.sent();
                             return [2 /*return*/];
@@ -187,7 +188,7 @@ var user_routes = function (app) {
     app.get('/users', verifyAuthToken, index);
     app.get('/users/:id', verifyAuthToken, show);
     app.post('/users/signup', signUp);
-    app["delete"]('/users', verifyAuthToken, deleteUser);
+    app.delete('/users', verifyAuthToken, deleteUser);
     app.post('/users/login', login);
 };
-exports["default"] = user_routes;
+exports.default = user_routes;

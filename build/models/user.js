@@ -38,12 +38,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 var connection_1 = require("../handler/connection");
 var bcrypt_1 = __importDefault(require("bcrypt"));
 var dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1["default"].config();
+dotenv_1.default.config();
 var _a = process.env, BCRYPT_PEPPER = _a.BCRYPT_PEPPER, SALT_ROUNDS = _a.SALT_ROUNDS;
 var User = /** @class */ (function () {
     function User(environment) {
@@ -104,7 +104,7 @@ var User = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         sql = 'INSERT INTO users(first_name, last_name, email, password) VALUES ($1, $2, $3, $4)';
-                        return [4 /*yield*/, bcrypt_1["default"].hash(signUp.password + this.pepper, parseInt(this.salt))];
+                        return [4 /*yield*/, bcrypt_1.default.hash(signUp.password + this.pepper, parseInt(this.salt))];
                     case 2:
                         hash = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [signUp.first_name, signUp.last_name, signUp.email, hash])];

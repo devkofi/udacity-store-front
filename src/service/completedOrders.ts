@@ -5,12 +5,12 @@ export class CompletedOrder extends Order{
         super(environment);
     }
 
-    async show(id:string, orderStatus: string): Promise<OrderType[]>{
+    async show(user_id:string, order_status: string): Promise<OrderType[]>{
         try{
             const conn = this.connection();
             await conn.connect();
-            const sql = 'SELECT * FROM orders WHERE id=($1) order_status=($2)';
-            const result = await conn.query(sql,[id, orderStatus]);
+            const sql = 'SELECT * FROM orders WHERE user_id=($1) AND order_status=($2)';
+            const result = await conn.query(sql,[user_id, order_status.toLowerCase()]);
             conn.end();
             console.log(result.rows)
             return result.rows;

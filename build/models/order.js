@@ -86,7 +86,7 @@ var Order = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, conn.query(sql, [order.product_id, order.product_quantity, order.user_id, order.order_status])];
+                        return [4 /*yield*/, conn.query(sql, [order.product_id, order.product_quantity, order.user_id, order.order_status.toLowerCase()])];
                     case 2:
                         result = _a.sent();
                         return [4 /*yield*/, conn.query('SELECT * FROM orders WHERE product_id=($1)', [order.product_id])];

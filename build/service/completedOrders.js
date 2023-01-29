@@ -58,7 +58,7 @@ var CompletedOrder = /** @class */ (function (_super) {
     function CompletedOrder(environment) {
         return _super.call(this, environment) || this;
     }
-    CompletedOrder.prototype.show = function (id, orderStatus) {
+    CompletedOrder.prototype.show = function (user_id, order_status) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_1;
             return __generator(this, function (_a) {
@@ -69,8 +69,8 @@ var CompletedOrder = /** @class */ (function (_super) {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT * FROM orders WHERE id=($1) order_status=($2)';
-                        return [4 /*yield*/, conn.query(sql, [id, orderStatus])];
+                        sql = 'SELECT * FROM orders WHERE user_id=($1) AND order_status=($2)';
+                        return [4 /*yield*/, conn.query(sql, [user_id, order_status.toLowerCase()])];
                     case 2:
                         result = _a.sent();
                         conn.end();

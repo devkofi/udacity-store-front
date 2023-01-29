@@ -46,7 +46,7 @@ const deleteOrder = async (req: Request, res:Response): Promise<void> =>{
 }
 
 const completedOrders = async (req: Request, res: Response): Promise<void> =>{
-    const show = await completedOrder.show(req.params.id, req.params.status).then((item)=>{
+    const show = await completedOrder.show(req.params.user_id, req.params.order_status).then((item)=>{
         res.json(item);
     })
 }
@@ -76,7 +76,7 @@ const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
 const order_routes = (app: express.Application): void =>{
     app.get('/orders',verifyAuthToken, index);
     app.get('/orders/:id', verifyAuthToken, show);
-    app.get('/orders/:id/status', verifyAuthToken, completedOrders);
+    app.get('/orders/:user_id/:order_status', completedOrders);
     app.post('/orders',verifyAuthToken, create)
     app.delete('/orders/:id',verifyAuthToken, deleteOrder);
 

@@ -100,7 +100,7 @@ var completedOrders = function (req, res) { return __awaiter(void 0, void 0, voi
     var show;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, completedOrder.show(req.params.id, req.params.status).then(function (item) {
+            case 0: return [4 /*yield*/, completedOrder.show(req.params.user_id, req.params.order_status).then(function (item) {
                     res.json(item);
                 })];
             case 1:
@@ -138,7 +138,7 @@ var verifyAuthToken = function (req, res, next) {
 var order_routes = function (app) {
     app.get('/orders', verifyAuthToken, index);
     app.get('/orders/:id', verifyAuthToken, show);
-    app.get('/orders/:id/status', verifyAuthToken, completedOrders);
+    app.get('/orders/:user_id/:order_status', completedOrders);
     app.post('/orders', verifyAuthToken, create);
     app["delete"]('/orders/:id', verifyAuthToken, deleteOrder);
 };
