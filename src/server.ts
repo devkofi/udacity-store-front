@@ -38,7 +38,6 @@ app.get('/users/signup', (req: express.Request, res: express.Response)=>{
 });
 
 
-
 user_routes(app);
 product_routes(app);
 order_routes(app);
@@ -46,3 +45,6 @@ order_routes(app);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 });
+
+
+export default app;
