@@ -29,7 +29,7 @@ export class Order{
             const sql = 'SELECT * FROM orders';
             const result = await conn.query(sql);
             conn.end();
-            console.log(result.rows)
+            //console.log(result.rows)
             return result.rows;
 
 
@@ -47,7 +47,7 @@ export class Order{
             const output = await conn.query('SELECT * FROM orders WHERE product_id=($1)', [order.product_id]);
             
             conn.end();
-            console.log(output.rows);
+            //console.log(output.rows);
             return output.rows;
 
         } catch (err) {
@@ -63,7 +63,7 @@ export class Order{
             const sql = 'SELECT * FROM orders WHERE id=($1)';
             const result = await conn.query(sql, [id]);
             conn.end();
-            console.log(result.rows)
+            //console.log(result.rows)
             return result.rows;
 
 
@@ -81,7 +81,7 @@ export class Order{
             const result = await conn.query(sql, [id]);
             const output = await conn.query('SELECT * FROM orders');
             conn.end();
-            console.log(output.rows)
+            //console.log(output.rows)
             return output.rows;
 
 

@@ -37,7 +37,7 @@ export class User{
         const sql = 'SELECT * FROM users';
         const result = await conn.query(sql);
         conn.end();
-        console.log(result.rows);
+        //console.log(result.rows);
         return result.rows;
     }
 
@@ -47,7 +47,7 @@ export class User{
         const sql = 'SELECT * FROM users WHERE id=($1)';
         const result = await conn.query(sql, [id]);
         conn.end();
-        console.log(result.rows);
+        //console.log(result.rows);
         return result.rows;
     }
     
@@ -60,7 +60,7 @@ export class User{
             const result = await conn.query(sql,[signUp.first_name, signUp.last_name, signUp.email, hash]);
             const output = await conn.query('SELECT * FROM users WHERE email=($1)', [signUp.email]);
             conn.end();
-            console.log(output.rows)
+            //console.log(output.rows)
             return output.rows;
 
         } catch (err) {
@@ -76,7 +76,7 @@ export class User{
             const sql = 'SELECT email, password FROM users WHERE email=($1) AND password=($2)';
             const result = await conn.query(sql,[signIn.email, signIn.password]);
             conn.end();
-            console.log(result.rows)
+            //console.log(result.rows)
             return result.rows;
 
         } catch (err) {
@@ -91,7 +91,7 @@ export class User{
         const result = await conn.query(sql, [id]);
         const output = await conn.query('SELECT * FROM users');
         conn.end();
-        console.log(output.rows);
+        //console.log(output.rows);
         return output.rows;
     }
 
@@ -102,7 +102,7 @@ export class User{
         const sql = 'SELECT email,password from users WHERE email=($1)';
         const result = await conn.query(sql,[auth.email]);
         conn.end();
-        console.log(auth.password+this.pepper);
+        //console.log(auth.password+this.pepper);
         console.log(result.rows[0]);
 
         if(result.rows.length){

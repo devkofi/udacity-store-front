@@ -11,6 +11,7 @@ export type ProductType = {
     category:string
 };
 
+
 export class Product{
     //conn: Pool;
 
@@ -25,7 +26,7 @@ export class Product{
             const sql = 'SELECT * FROM products';
             const result = await conn.query(sql);
             conn.end();
-            console.log(result.rows)
+            //console.log(result.rows)
             return result.rows;
 
         } catch (err) {
@@ -42,7 +43,7 @@ export class Product{
             const sql = 'SELECT * FROM products WHERE id=($1)';
             const result = await conn.query(sql, [id]);
             conn.end();
-            console.log(result.rows)
+            //console.log(result.rows)
             return result.rows;
 
 
@@ -60,7 +61,7 @@ export class Product{
             const output = await conn.query('SELECT * FROM products WHERE name=($1)', [product.name]);
             
             conn.end();
-            console.log(output.rows);
+            //console.log(output.rows);
             return output.rows;
 
         } catch (err) {
@@ -75,7 +76,7 @@ export class Product{
             await conn.connect();
             const result = await conn.query(sql, [product.name, product.price, product.category, id]);
             conn.end();
-            console.log(result.rows[0]);
+            //console.log(result.rows[0]);
             return result.rows[0];
         } catch (err) {
             throw new Error('Could not update product')
@@ -90,7 +91,7 @@ export class Product{
             const result = await conn.query(sql,[id]);
             const output = await conn.query('SELECT * FROM products');
             conn.end();
-            console.log(output.rows)
+            //console.log(output.rows)
             return output.rows;
         } catch (err) {
             throw new Error(`Could not delete product ${id}. Error: ${err}`)
