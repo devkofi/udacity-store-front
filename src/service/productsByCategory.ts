@@ -1,4 +1,5 @@
 import { Product, ProductType } from "../models/product";
+import {connection} from "../handler/pgConnection";
 
 export class ProductsByCategory extends Product{
     constructor (environment: string){
@@ -7,7 +8,8 @@ export class ProductsByCategory extends Product{
 
     async show(category: string): Promise<ProductType[]>{
         try{
-            const conn = this.connection();
+            // @ts-ignore
+            const conn = connection();
             await conn.connect();
             const sql = 'SELECT * FROM products WHERE category=($1)';
             const result = await conn.query(sql,[category]);
