@@ -41,10 +41,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Order = void 0;
 var dotenv_1 = __importDefault(require("dotenv"));
-var pg_1 = require("pg");
+var pgConnection_1 = require("../handler/pgConnection");
 dotenv_1.default.config();
-var _a = process.env, POSTGRES_HOST = _a.POSTGRES_HOST, POSTGRES_PORT = _a.POSTGRES_PORT, POSTGRES_DB = _a.POSTGRES_DB, POSTGRES_TEST_DB = _a.POSTGRES_TEST_DB, POSTGRES_USER = _a.POSTGRES_USER, POSTGRES_PASSWORD = _a.POSTGRES_PASSWORD, ENV = _a.ENV;
-console.log(ENV);
+var ENV = process.env.ENV;
 var Order = /** @class */ (function () {
     function Order(environment) {
     }
@@ -55,7 +54,7 @@ var Order = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -82,7 +81,7 @@ var Order = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
                         sql = "INSERT INTO orders(product_id, product_quantity, user_id, order_status) VALUES ($1, $2, $3, $4)";
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -103,14 +102,14 @@ var Order = /** @class */ (function () {
             });
         });
     };
-    Order.prototype.showCurrentOrder = function (id) {
+    Order.prototype.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -129,14 +128,14 @@ var Order = /** @class */ (function () {
             });
         });
     };
-    Order.prototype.deleteCurrentOrder = function (id) {
+    Order.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, output, err_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -157,22 +156,6 @@ var Order = /** @class */ (function () {
                 }
             });
         });
-    };
-    Order.prototype.connection = function () {
-        var conn = ENV === "dev" ? new pg_1.Pool({
-            host: POSTGRES_HOST,
-            port: Number(POSTGRES_PORT),
-            database: POSTGRES_DB,
-            user: POSTGRES_USER,
-            password: POSTGRES_PASSWORD,
-        }) : new pg_1.Pool({
-            host: POSTGRES_HOST,
-            port: Number(POSTGRES_PORT),
-            database: POSTGRES_TEST_DB,
-            user: POSTGRES_USER,
-            password: POSTGRES_PASSWORD,
-        });
-        return conn;
     };
     return Order;
 }());

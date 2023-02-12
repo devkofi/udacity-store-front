@@ -1,19 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -51,40 +36,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CompletedOrder = void 0;
-var order_1 = require("../models/order");
-var pgConnection_1 = require("../handler/pgConnection");
-var CompletedOrder = /** @class */ (function (_super) {
-    __extends(CompletedOrder, _super);
-    function CompletedOrder(environment) {
-        return _super.call(this, environment) || this;
-    }
-    CompletedOrder.prototype.completed = function (user_id, order_status) {
-        return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, err_1;
+var productsByCategory_1 = require("../../service/productsByCategory");
+var ENV = process.env.ENV;
+var productsByCategory = new productsByCategory_1.ProductsByCategory(ENV);
+describe("PRODUCTS BY CATEGORY SERVICE TEST", function () {
+    describe("Test Suite for Popular Products Service: ", function () {
+        it("should have a show method", function () {
+            expect(productsByCategory.show).toBeDefined();
+        });
+    });
+    describe("Test Suite for Length of Array: ", function () {
+        it("popularProducts returns an array of products by category", function () { return __awaiter(void 0, void 0, void 0, function () {
+            var results;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        conn = (0, pgConnection_1.connection)();
-                        return [4 /*yield*/, conn.connect()];
+                    case 0: return [4 /*yield*/, productsByCategory.show("complete").then(function (item) {
+                            expect(item.length).toBeGreaterThanOrEqual(0);
+                        })];
                     case 1:
-                        _a.sent();
-                        sql = 'SELECT * FROM orders WHERE user_id=($1) AND order_status=($2)';
-                        return [4 /*yield*/, conn.query(sql, [user_id, order_status.toLowerCase()])];
-                    case 2:
-                        result = _a.sent();
-                        conn.end();
-                        console.log(result.rows);
-                        return [2 /*return*/, result.rows];
-                    case 3:
-                        err_1 = _a.sent();
-                        throw new Error("Could not get products. Error: ".concat(err_1));
-                    case 4: return [2 /*return*/];
+                        results = _a.sent();
+                        return [2 /*return*/];
                 }
             });
-        });
-    };
-    return CompletedOrder;
-}(order_1.Order));
-exports.CompletedOrder = CompletedOrder;
+        }); });
+    });
+});

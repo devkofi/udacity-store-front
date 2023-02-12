@@ -46,66 +46,102 @@ var _a = process.env, ENV = _a.ENV, BCRYPT_PEPPER = _a.BCRYPT_PEPPER, TOKEN_SECR
 var order = new order_1.Order(ENV);
 var completedOrder = new completedOrders_1.CompletedOrder(ENV);
 var index = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var index;
+    var index_1, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, order.index().then(function (item) {
-                    console.log(item);
-                    res.json(item);
-                })];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, order.index().then(function (item) {
+                        console.log(item);
+                        res.json(item);
+                    })];
             case 1:
-                index = _a.sent();
-                return [2 /*return*/];
+                index_1 = _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _a.sent();
+                res.status(400);
+                res.json((error_1));
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var show;
+    var show_1, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, order.showCurrentOrder(req.params.id).then(function (item) {
-                    res.json(item);
-                })];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, order.show(req.params.id).then(function (item) {
+                        res.json(item);
+                    })];
             case 1:
-                show = _a.sent();
-                return [2 /*return*/];
+                show_1 = _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _a.sent();
+                res.status(400);
+                res.json(error_2);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 var create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var new_order, create_order;
     return __generator(this, function (_a) {
-        new_order = {
-            product_id: req.body.product_id,
-            product_quantity: req.body.product_quantity,
-            user_id: req.body.user_id,
-            order_status: req.body.order_status
-        };
-        create_order = order.create(new_order).then(function (item) {
-            res.json(item);
-        });
+        try {
+            new_order = {
+                product_id: req.body.product_id,
+                product_quantity: req.body.product_quantity,
+                user_id: req.body.user_id,
+                order_status: req.body.order_status
+            };
+            create_order = order.create(new_order).then(function (item) {
+                res.json(item);
+            });
+        }
+        catch (error) {
+            res.status(400);
+            res.json(error);
+        }
         return [2 /*return*/];
     });
 }); };
 var deleteOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var deleteCurrentOrder;
     return __generator(this, function (_a) {
-        deleteCurrentOrder = order.deleteCurrentOrder(req.params.id).then(function (item) {
-            res.json(item);
-        });
+        try {
+            deleteCurrentOrder = order.delete(req.params.id).then(function (item) {
+                res.json(item);
+            });
+        }
+        catch (error) {
+            res.status(400);
+            res.json(error);
+        }
         return [2 /*return*/];
     });
 }); };
 var completedOrders = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var show;
+    var show_2, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, completedOrder.show(req.params.user_id, req.params.order_status).then(function (item) {
-                    res.json(item);
-                })];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, completedOrder.completed(req.params.user_id, req.params.order_status).then(function (item) {
+                        res.json(item);
+                    })];
             case 1:
-                show = _a.sent();
-                return [2 /*return*/];
+                show_2 = _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _a.sent();
+                res.status(400);
+                res.json(error_3);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };

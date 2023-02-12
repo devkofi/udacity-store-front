@@ -35,16 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
-var dotenv_1 = __importDefault(require("dotenv"));
-var pg_1 = require("pg");
-dotenv_1.default.config();
-var _a = process.env, POSTGRES_HOST = _a.POSTGRES_HOST, POSTGRES_PORT = _a.POSTGRES_PORT, POSTGRES_DB = _a.POSTGRES_DB, POSTGRES_TEST_DB = _a.POSTGRES_TEST_DB, POSTGRES_USER = _a.POSTGRES_USER, POSTGRES_PASSWORD = _a.POSTGRES_PASSWORD, ENV = _a.ENV;
-console.log(ENV);
+var pgConnection_1 = require("../handler/pgConnection");
 var Product = /** @class */ (function () {
     //conn: Pool;
     function Product(environment) {
@@ -56,7 +49,7 @@ var Product = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -82,7 +75,7 @@ var Product = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -109,7 +102,7 @@ var Product = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
                         sql = "INSERT INTO products(name, price, category) VALUES ($1, $2, $3)";
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -137,7 +130,7 @@ var Product = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         sql = 'UPDATE products SET name=($1), price=($2), category=($3) WHERE id=($4)';
                         return [4 /*yield*/, conn.connect()];
                     case 1:
@@ -163,7 +156,7 @@ var Product = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         sql = 'DELETE FROM products WHERE id=($1)';
                         return [4 /*yield*/, conn.connect()];
                     case 1:
@@ -184,22 +177,6 @@ var Product = /** @class */ (function () {
                 }
             });
         });
-    };
-    Product.prototype.connection = function () {
-        var conn = ENV === "dev" ? new pg_1.Pool({
-            host: POSTGRES_HOST,
-            port: Number(POSTGRES_PORT),
-            database: POSTGRES_DB,
-            user: POSTGRES_USER,
-            password: POSTGRES_PASSWORD,
-        }) : new pg_1.Pool({
-            host: POSTGRES_HOST,
-            port: Number(POSTGRES_PORT),
-            database: POSTGRES_TEST_DB,
-            user: POSTGRES_USER,
-            password: POSTGRES_PASSWORD,
-        });
-        return conn;
     };
     return Product;
 }());

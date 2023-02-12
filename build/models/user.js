@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-var connection_1 = require("../handler/connection");
+var pgConnection_1 = require("../handler/pgConnection");
 var bcrypt_1 = __importDefault(require("bcrypt"));
 var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -56,7 +56,7 @@ var User = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        conn = (0, connection_1.connection)();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -77,7 +77,7 @@ var User = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        conn = (0, connection_1.connection)();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -99,7 +99,7 @@ var User = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
-                        conn = (0, connection_1.connection)();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -131,7 +131,7 @@ var User = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        conn = (0, connection_1.connection)();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -150,13 +150,13 @@ var User = /** @class */ (function () {
             });
         });
     };
-    User.prototype.deleteUser = function (id) {
+    User.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, output;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        conn = (0, connection_1.connection)();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
@@ -180,7 +180,7 @@ var User = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        conn = (0, connection_1.connection)();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();

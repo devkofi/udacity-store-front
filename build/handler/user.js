@@ -38,46 +38,69 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var user_1 = require("../models/user");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var bcrypt_1 = __importDefault(require("bcrypt"));
-var _a = process.env, ENV = _a.ENV, BCRYPT_PEPPER = _a.BCRYPT_PEPPER, TOKEN_SECRET = _a.TOKEN_SECRET, SALT_ROUNDS = _a.SALT_ROUNDS;
+var _a = process.env, ENV = _a.ENV, BCRYPT_PEPPER = _a.BCRYPT_PEPPER, TOKEN_SECRET = _a.TOKEN_SECRET;
+var HEADER = new Headers();
 var user = new user_1.User(ENV);
 var index = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var index;
+    var index_1, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, user.index().then(function (item) {
-                    console.log(item);
-                    res.json(item);
-                })];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, user.index().then(function (item) {
+                        console.log(item);
+                        res.json(item);
+                    })];
             case 1:
-                index = _a.sent();
-                return [2 /*return*/];
+                index_1 = _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _a.sent();
+                res.status(400);
+                res.json(error_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var show;
+    var show_1, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, user.show(req.params.id).then(function (item) {
-                    console.log(item);
-                    res.json(item);
-                })];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, user.show(req.params.id).then(function (item) {
+                        console.log(item);
+                        res.json(item);
+                    })];
             case 1:
-                show = _a.sent();
-                return [2 /*return*/];
+                show_1 = _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _a.sent();
+                res.status(400);
+                res.json(error_2);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 var signIn = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var sign;
     return __generator(this, function (_a) {
-        sign = user.signIn({ email: req.body.email, password: req.body.password }).then(function (item) {
-            res.json(item);
-        });
+        try {
+            sign = user.signIn({ email: req.body.email, password: req.body.password }).then(function (item) {
+                res.json(item);
+            });
+        }
+        catch (error) {
+            res.status(400);
+            res.json(error);
+        }
         return [2 /*return*/];
     });
 }); };
@@ -98,8 +121,13 @@ var signUp = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 return [4 /*yield*/, user.signUp(temp_user)];
             case 2:
                 newUser = _a.sent();
-                token = jsonwebtoken_1.default.sign({ user: newUser }, process.env.TOKEN_SECRET);
-                console.log(token);
+                token = jsonwebtoken_1["default"].sign({ user: newUser }, process.env.TOKEN_SECRET);
+                //console.log(token);
+                //TEST
+                // req.headers["x-access-token"] = token;
+                // console.log(req.headers["x-access-token"]);
+                //
+                HEADER.set("x-access-token", token);
                 res.send("Successfully created user");
                 return [3 /*break*/, 4];
             case 3:
@@ -114,9 +142,15 @@ var signUp = function (req, res) { return __awaiter(void 0, void 0, void 0, func
 var deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var delUser;
     return __generator(this, function (_a) {
-        delUser = user.deleteUser(req.params.id).then(function (item) {
-            res.json(item);
-        });
+        try {
+            delUser = user["delete"](req.params.id).then(function (item) {
+                res.json(item);
+            });
+        }
+        catch (error) {
+            res.status(400);
+            res.json(error);
+        }
         return [2 /*return*/];
     });
 }); };
@@ -127,18 +161,18 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 return [4 /*yield*/, user.authenticate({ email: req.body.email, password: req.body.password }).then(function (item) {
-                        var token = jsonwebtoken_1.default.sign({ user: item }, process.env.TOKEN_SECRET, { algorithm: 'HS256' });
-                        res.cookie('token', token, {
-                            httpOnly: true,
-                            //secure: true,
-                            maxAge: (5000 * 60),
-                            //signed: true
-                        });
-                        console.log(token);
-                        var header = function () { return res.set('authorization', token); };
+                        var token = jsonwebtoken_1["default"].sign({ user: item }, process.env.TOKEN_SECRET, { algorithm: 'HS256' });
+                        // res.cookie('token', token, {
+                        //     httpOnly: true,
+                        //     //secure: true,
+                        //     maxAge: (5000 * 60),
+                        //     //signed: true
+                        // });
+                        //console.log(token);
+                        var header = function () { return res.set('x-access-token', token); };
                         header();
                         console.log(item);
-                        if (bcrypt_1.default.compareSync(req.body.password + BCRYPT_PEPPER, item === null || item === void 0 ? void 0 : item.password)) {
+                        if (bcrypt_1["default"].compareSync(req.body.password + BCRYPT_PEPPER, item === null || item === void 0 ? void 0 : item.password)) {
                             res.status(200);
                             res.send("Login Successful");
                         }
@@ -158,14 +192,14 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
         }
     });
 }); };
-var verifyAuthToken = function (req, res, next) {
+var verifyCookieAuthToken = function (req, res, next) {
     var token = req.cookies.token;
     try {
         if (typeof token !== 'undefined') {
             var verify = function () { return __awaiter(void 0, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, jsonwebtoken_1.default.verify(token, TOKEN_SECRET)];
+                        case 0: return [4 /*yield*/, jsonwebtoken_1["default"].verify((token), TOKEN_SECRET)];
                         case 1:
                             _a.sent();
                             return [2 /*return*/];
@@ -184,11 +218,39 @@ var verifyAuthToken = function (req, res, next) {
         res.redirect("/login");
     }
 };
+var verifyAuthToken = function (req, res, next) {
+    //const token = req.cookies.token;
+    // const token = (req.headers["x-access-token"] as unknown) as string;
+    var token = HEADER.get("x-access-token");
+    console.log(token);
+    // try {
+    //     if(typeof token !== 'undefined'){
+    //         const verify = async () =>{
+    //             await jwt.verify((token), (TOKEN_SECRET as unknown) as string);
+    //         }
+    //         next()
+    //     }
+    //     else{
+    //         res.redirect("/login")
+    //     }
+    // } catch (error) {
+    //     console.log(error)
+    //     res.clearCookie("token");
+    //     res.redirect("/login");
+    // }
+    try {
+        var decoded = jsonwebtoken_1["default"].verify(String(token), String(process.env.JWT_TOKEN));
+        req.headers["authorization"] = decoded;
+    }
+    catch (err) {
+        return res.status(401).send("Invalid Token");
+    }
+};
 var user_routes = function (app) {
     app.get('/users', verifyAuthToken, index);
     app.get('/users/:id', verifyAuthToken, show);
     app.post('/users/signup', signUp);
-    app.delete('/users', verifyAuthToken, deleteUser);
+    app["delete"]('/users', verifyAuthToken, deleteUser);
     app.post('/users/login', login);
 };
-exports.default = user_routes;
+exports["default"] = user_routes;

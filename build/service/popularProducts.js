@@ -53,6 +53,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PopularProducts = void 0;
 var product_1 = require("../models/product");
+var pgConnection_1 = require("../handler/pgConnection");
 var PopularProducts = /** @class */ (function (_super) {
     __extends(PopularProducts, _super);
     function PopularProducts(environment) {
@@ -65,7 +66,7 @@ var PopularProducts = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        conn = this.connection();
+                        conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
