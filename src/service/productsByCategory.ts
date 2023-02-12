@@ -6,7 +6,7 @@ export class ProductsByCategory extends Product{
         super(environment);
     }
 
-    async show(category: string): Promise<ProductType[]>{
+    async showCategory(category: string): Promise<ProductType[]>{
         try{
             // @ts-ignore
             const conn = connection();
@@ -14,7 +14,7 @@ export class ProductsByCategory extends Product{
             const sql = 'SELECT * FROM products WHERE category=($1)';
             const result = await conn.query(sql,[category]);
             conn.end();
-            console.log(result.rows)
+            //console.log(result.rows)
             return result.rows;
 
         } catch (err) {

@@ -75,7 +75,7 @@ var CompletedOrder = /** @class */ (function (_super) {
                     case 2:
                         result = _a.sent();
                         conn.end();
-                        console.log(result.rows);
+                        //console.log(result.rows)
                         return [2 /*return*/, result.rows];
                     case 3:
                         err_1 = _a.sent();

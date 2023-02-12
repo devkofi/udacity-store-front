@@ -7,7 +7,7 @@ export class PopularProducts extends Product{
         super(environment);
     }
 
-    async show(): Promise<ProductType[]>{
+    async showPopular(): Promise<ProductType[]>{
         try{
             // @ts-ignore
             const conn = connection();
@@ -15,7 +15,7 @@ export class PopularProducts extends Product{
             const sql = 'SELECT * FROM products LIMIT 5';
             const result = await conn.query(sql);
             conn.end();
-            console.log(result.rows)
+            //console.log(result.rows)
             return result.rows;
 
         } catch (err) {

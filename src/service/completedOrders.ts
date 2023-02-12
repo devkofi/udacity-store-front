@@ -14,7 +14,7 @@ export class CompletedOrder extends Order{
             const sql = 'SELECT * FROM orders WHERE user_id=($1) AND order_status=($2)';
             const result = await conn.query(sql,[user_id, order_status.toLowerCase()]);
             conn.end();
-            console.log(result.rows)
+            //console.log(result.rows)
             return result.rows;
 
         } catch (err) {

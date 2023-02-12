@@ -59,7 +59,7 @@ var PopularProducts = /** @class */ (function (_super) {
     function PopularProducts(environment) {
         return _super.call(this, environment) || this;
     }
-    PopularProducts.prototype.show = function () {
+    PopularProducts.prototype.showPopular = function () {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_1;
             return __generator(this, function (_a) {
@@ -75,7 +75,7 @@ var PopularProducts = /** @class */ (function (_super) {
                     case 2:
                         result = _a.sent();
                         conn.end();
-                        console.log(result.rows);
+                        //console.log(result.rows)
                         return [2 /*return*/, result.rows];
                     case 3:
                         err_1 = _a.sent();
