@@ -13,42 +13,78 @@ const order = new Order((ENV as unknown) as string);
 const completedOrder = new CompletedOrder((ENV as unknown) as string)
 
 const index = async (req: Request, res: Response): Promise<void> =>{
-    const index = await order.index().then((item)=>{
-        console.log(item);
-        res.json(item)
-    })
+    try {
+        const index = await order.index().then((item)=>{
+            console.log(item);
+            res.json(item)
+        })
+    } catch (error) {
+        res.status(400);
+        res.json((error))
+    }
+    
 }
 
 const show = async (req: Request, res: Response): Promise<void> =>{
-    const show = await order.showCurrentOrder(req.params.id).then((item)=>{
+    try {
+        const show = await order.show(req.params.id).then((item)=>{
         res.json(item);
     })
+    } catch (error) {
+        res.status(400);
+        res.json(error);
+    }
+    
 }
 
 const create = async (req: Request, res: Response): Promise<void> =>{
-    const new_order: OrderType = {
-        product_id: (req.body.product_id as unknown) as number, 
-        product_quantity: (req.body.product_quantity as unknown) as number,
-        user_id:(req.body.user_id as unknown) as number,
-        order_status: (req.body.order_status as unknown) as string
-  };
-
-  const create_order = order.create(new_order).then((item)=>{
-      res.json(item);
-  });
+    try {
+        const new_order: OrderType = {
+            product_id: (req.body.product_id as unknown) as number, 
+            product_quantity: (req.body.product_quantity as unknown) as number,
+            user_id:(req.body.user_id as unknown) as number,
+            order_status: (req.body.order_status as unknown) as string
+      };
+    
+      const create_order = order.create(new_order).then((item)=>{
+          res.json(item);
+      });
+    } catch (error) {
+        res.status(400)
+        res.json(error)
+        
+    }
+    
   
 }
 
 const deleteOrder = async (req: Request, res:Response): Promise<void> =>{
-    const deleteCurrentOrder = order.deleteCurrentOrder(req.params.id).then((item)=>{
-        res.json(item);
-    })
+
+    try {
+        const deleteCurrentOrder = order.delete(req.params.id).then((item)=>{
+            res.json(item);
+        })
+    } catch (error) {
+        res.status(400)
+        res.json(error)
+        
+    }
+
+    
 }
 
 const completedOrders = async (req: Request, res: Response): Promise<void> =>{
-    const show = await completedOrder.show(req.params.user_id, req.params.order_status).then((item)=>{
-        res.json(item);
-    })
+
+    try {
+        const show = await completedOrder.completed(req.params.user_id, req.params.order_status).then((item)=>{
+            res.json(item);
+        })
+    } catch (error) {
+        res.status(400)
+        res.json(error)
+        
+    }
+    
 }
 
 const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
