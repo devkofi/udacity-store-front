@@ -14,13 +14,16 @@
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./build --onSuccess \"nodemon ./build/server.js\" --onFailure \"echo Beep! Compilation Failed\"",
     "migrate-up": "db-migrate --env test up && db-migrate up",
     "migrate-down": "db-migrate --env test down && db-migrate down",
-    "test": "cross-env ENV=test && npx tsc && db-migrate --env test up && jasmine && db-migrate db:drop test"
+    "test": "cross-env ENV=test && npx tsc && db-migrate --env test up && jasmine && db-migrate db:drop testdb"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/devkofi/udacity-store-front.git"
   },
   "keywords": [
+    "test",
+    "db",
+    "postgres",
     "store-front",
     "udacity-store",
     "udacity"
@@ -48,7 +51,7 @@
     "@types/cors": "^2.8.13",
     "@types/db-migrate-pg": "^0.0.10",
     "@types/dotenv": "^8.2.0",
-    "@types/express": "^4.17.15",
+    "@types/express": "^4.17.17",
     "@types/jasmine": "^4.3.1",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.11.18",
