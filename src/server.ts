@@ -5,9 +5,10 @@ import cors from 'cors';
 import bodyParser from "body-parser";
 import product_routes from "./handler/product";
 import order_routes from "./handler/order";
-import user_routes from "./handler/user";
+import {user_routes} from "./handler/user";
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
+import { access } from "fs";
 const app = express();
 const port = 3000;
 
@@ -17,7 +18,9 @@ app.use(express.static(rootFolder));
 app.use(cookieParser());
 
 //Enable cors for all routes
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -26,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req: express.Request, res: express.Response)=>{
+  
   res.sendFile(rootFolder + "login.html");
 });
 
