@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { PopularProducts } from '../service/popularProducts';
 import { ProductsByCategory } from '../service/productsByCategory';
+import { verifyAuthToken } from '../middleware/auth';
+
 const {ENV, TOKEN_SECRET} = process.env;
 
 const create_product = new Product((ENV as unknown) as string);
@@ -78,7 +80,7 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> =>{
 
 const popularProduct = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const popularProduct = new PopularProducts((ENV as unknown) as string).show().then((item)=>{
+        const popularProduct = new PopularProducts((ENV as unknown) as string).showPopular().then((item)=>{
             res.json(item);
         });
     } catch (error) {
@@ -89,7 +91,7 @@ const popularProduct = async (req: Request, res: Response): Promise<void> =>{
 
 const productsByCategory = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const productsByCategory = new ProductsByCategory((ENV as unknown) as string).show(req.params.category).then((item)=>{
+        const productsByCategory = new ProductsByCategory((ENV as unknown) as string).showCategory(req.params.category).then((item)=>{
             res.json(item);
         });
     } catch (error) {
@@ -98,27 +100,27 @@ const productsByCategory = async (req: Request, res: Response): Promise<void> =>
     }
 }
 
-const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
-    const token = req.cookies.token;
+// const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
+//     const token = req.cookies.token;
     
-    try {
-        if(typeof token !== 'undefined'){
-            const verify = async () =>{
-                await jwt.verify(token, (TOKEN_SECRET as unknown) as string);
-            }
-            next()
-        }
-        else{
-            res.redirect("/login")
-        }
+//     try {
+//         if(typeof token !== 'undefined'){
+//             const verify = async () =>{
+//                 await jwt.verify(token, (TOKEN_SECRET as unknown) as string);
+//             }
+//             next()
+//         }
+//         else{
+//             res.redirect("/login")
+//         }
         
-    } catch (error) {
-        console.log(error)
-        res.clearCookie("token");
-        res.redirect("/login");
-    }
+//     } catch (error) {
+//         console.log(error)
+//         res.clearCookie("token");
+//         res.redirect("/login");
+//     }
 
-}
+// }
 
 
 const product_routes = (app: express.Application): void =>{

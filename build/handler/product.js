@@ -35,14 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var product_1 = require("../models/product");
-var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var popularProducts_1 = require("../service/popularProducts");
 var productsByCategory_1 = require("../service/productsByCategory");
+var auth_1 = require("../middleware/auth");
 var _a = process.env, ENV = _a.ENV, TOKEN_SECRET = _a.TOKEN_SECRET;
 var create_product = new product_1.Product(ENV);
 var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -129,7 +126,7 @@ var popularProduct = function (req, res) { return __awaiter(void 0, void 0, void
     var popularProduct_1;
     return __generator(this, function (_a) {
         try {
-            popularProduct_1 = new popularProducts_1.PopularProducts(ENV).show().then(function (item) {
+            popularProduct_1 = new popularProducts_1.PopularProducts(ENV).showPopular().then(function (item) {
                 res.json(item);
             });
         }
@@ -144,7 +141,7 @@ var productsByCategory = function (req, res) { return __awaiter(void 0, void 0, 
     var productsByCategory_2;
     return __generator(this, function (_a) {
         try {
-            productsByCategory_2 = new productsByCategory_1.ProductsByCategory(ENV).show(req.params.category).then(function (item) {
+            productsByCategory_2 = new productsByCategory_1.ProductsByCategory(ENV).showCategory(req.params.category).then(function (item) {
                 res.json(item);
             });
         }
@@ -155,39 +152,31 @@ var productsByCategory = function (req, res) { return __awaiter(void 0, void 0, 
         return [2 /*return*/];
     });
 }); };
-var verifyAuthToken = function (req, res, next) {
-    var token = req.cookies.token;
-    try {
-        if (typeof token !== 'undefined') {
-            var verify = function () { return __awaiter(void 0, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, jsonwebtoken_1.default.verify(token, TOKEN_SECRET)];
-                        case 1:
-                            _a.sent();
-                            return [2 /*return*/];
-                    }
-                });
-            }); };
-            next();
-        }
-        else {
-            res.redirect("/login");
-        }
-    }
-    catch (error) {
-        console.log(error);
-        res.clearCookie("token");
-        res.redirect("/login");
-    }
-};
+// const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
+//     const token = req.cookies.token;
+//     try {
+//         if(typeof token !== 'undefined'){
+//             const verify = async () =>{
+//                 await jwt.verify(token, (TOKEN_SECRET as unknown) as string);
+//             }
+//             next()
+//         }
+//         else{
+//             res.redirect("/login")
+//         }
+//     } catch (error) {
+//         console.log(error)
+//         res.clearCookie("token");
+//         res.redirect("/login");
+//     }
+// }
 var product_routes = function (app) {
     app.get('/products', index); //index
     app.get('/products/popular', popularProduct);
     app.get('/products/:category', productsByCategory);
-    app.post('/products', verifyAuthToken, create); //create
+    app.post('/products', auth_1.verifyAuthToken, create); //create
     app.get('/products/:id', show); //show
-    app.put('/products/update', verifyAuthToken, update); //update
-    app.delete('/products/:id', verifyAuthToken, deleteProduct); //delete
+    app.put('/products/update', auth_1.verifyAuthToken, update); //update
+    app.delete('/products/:id', auth_1.verifyAuthToken, deleteProduct); //delete
 };
 exports.default = product_routes;
