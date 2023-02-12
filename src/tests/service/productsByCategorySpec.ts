@@ -17,7 +17,7 @@ describe("PRODUCTS BY CATEGORY SERVICE TEST", ()=>{
         
         it("popularProducts returns an array of products by category", async ()=>{
     
-            const results = await productsByCategory.show("complete").then((item)=>{
+            const results = await productsByCategory.showCategory("complete").then((item)=>{
                 expect(item.length).toBeGreaterThanOrEqual(0);
             });
             

@@ -17,7 +17,7 @@ describe("POPULAR PRODUCT SERVICE TEST", ()=>{
         
         it("popularProducts returns an array of the Popular Products", async ()=>{
     
-            const results = await popularProducts.show().then((item)=>{
+            const results = await popularProducts.showPopular().then((item)=>{
                 expect(item.length).toBeGreaterThanOrEqual(0);
             });
             

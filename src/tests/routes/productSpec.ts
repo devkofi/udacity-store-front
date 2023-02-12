@@ -20,7 +20,7 @@ const result = async () => {
   });
 }
 
-describe("",()=>{
+describe("PRODUCT ENDPOINT TEST",()=>{
   describe("Test Product Endpoint Responses", function () {
     it("get index endpoint", async () => {
       const response = await request.get("/products");
