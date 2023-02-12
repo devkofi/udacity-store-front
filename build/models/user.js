@@ -65,7 +65,7 @@ var User = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.end();
-                        console.log(result.rows);
+                        //console.log(result.rows);
                         return [2 /*return*/, result.rows];
                 }
             });
@@ -86,7 +86,7 @@ var User = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.end();
-                        console.log(result.rows);
+                        //console.log(result.rows);
                         return [2 /*return*/, result.rows];
                 }
             });
@@ -114,7 +114,7 @@ var User = /** @class */ (function () {
                     case 4:
                         output = _a.sent();
                         conn.end();
-                        console.log(output.rows);
+                        //console.log(output.rows)
                         return [2 /*return*/, output.rows];
                     case 5:
                         err_1 = _a.sent();
@@ -140,7 +140,7 @@ var User = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.end();
-                        console.log(result.rows);
+                        //console.log(result.rows)
                         return [2 /*return*/, result.rows];
                     case 3:
                         err_2 = _a.sent();
@@ -168,7 +168,7 @@ var User = /** @class */ (function () {
                     case 3:
                         output = _a.sent();
                         conn.end();
-                        console.log(output.rows);
+                        //console.log(output.rows);
                         return [2 /*return*/, output.rows];
                 }
             });
@@ -189,7 +189,7 @@ var User = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.end();
-                        console.log(auth.password + this.pepper);
+                        //console.log(auth.password+this.pepper);
                         console.log(result.rows[0]);
                         if (result.rows.length) {
                             user = result.rows[0];

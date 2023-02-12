@@ -50,7 +50,7 @@ describe("PRODUCTS BY CATEGORY SERVICE TEST", function () {
             var results;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, productsByCategory.show("complete").then(function (item) {
+                    case 0: return [4 /*yield*/, productsByCategory.showCategory("complete").then(function (item) {
                             expect(item.length).toBeGreaterThanOrEqual(0);
                         })];
                     case 1:

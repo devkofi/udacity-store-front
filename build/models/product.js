@@ -58,7 +58,7 @@ var Product = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.end();
-                        console.log(result.rows);
+                        //console.log(result.rows)
                         return [2 /*return*/, result.rows];
                     case 3:
                         err_1 = _a.sent();
@@ -84,7 +84,7 @@ var Product = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.end();
-                        console.log(result.rows);
+                        //console.log(result.rows)
                         return [2 /*return*/, result.rows];
                     case 3:
                         err_2 = _a.sent();
@@ -113,7 +113,7 @@ var Product = /** @class */ (function () {
                     case 3:
                         output = _a.sent();
                         conn.end();
-                        console.log(output.rows);
+                        //console.log(output.rows);
                         return [2 /*return*/, output.rows];
                     case 4:
                         err_3 = _a.sent();
@@ -139,7 +139,7 @@ var Product = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.end();
-                        console.log(result.rows[0]);
+                        //console.log(result.rows[0]);
                         return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_4 = _a.sent();
@@ -168,7 +168,7 @@ var Product = /** @class */ (function () {
                     case 3:
                         output = _a.sent();
                         conn.end();
-                        console.log(output.rows);
+                        //console.log(output.rows)
                         return [2 /*return*/, output.rows];
                     case 4:
                         err_5 = _a.sent();

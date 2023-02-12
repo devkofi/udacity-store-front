@@ -50,7 +50,7 @@ describe("POPULAR PRODUCT SERVICE TEST", function () {
             var results;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, popularProducts.show().then(function (item) {
+                    case 0: return [4 /*yield*/, popularProducts.showPopular().then(function (item) {
                             expect(item.length).toBeGreaterThanOrEqual(0);
                         })];
                     case 1:

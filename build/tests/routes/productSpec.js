@@ -62,7 +62,7 @@ var result = function () { return __awaiter(void 0, void 0, void 0, function () 
         }
     });
 }); };
-describe("", function () {
+describe("PRODUCT ENDPOINT TEST", function () {
     describe("Test Product Endpoint Responses", function () {
         var _this = this;
         it("get index endpoint", function () { return __awaiter(_this, void 0, void 0, function () {
