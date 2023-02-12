@@ -1,18 +1,8 @@
 import dotenv from 'dotenv'
 import {Pool} from 'pg';
+import { connection } from '../handler/pgConnection';
 
-dotenv.config()
-const {
-    POSTGRES_HOST,
-    POSTGRES_PORT,
-    POSTGRES_DB,
-    POSTGRES_TEST_DB,
-    POSTGRES_USER,
-    POSTGRES_PASSWORD,
-    ENV
-} = process.env 
-
-console.log(ENV)
+//dotenv.config()
 
 export type ProductType = {
     id?: number;
@@ -30,7 +20,7 @@ export class Product{
     
     async index(): Promise<ProductType[]>{
         try{
-            const conn = this.connection();
+            const conn = connection();
             await conn.connect();
             const sql = 'SELECT * FROM products';
             const result = await conn.query(sql);
@@ -47,7 +37,7 @@ export class Product{
     async show(id: string): Promise<ProductType[]>{
         try {
             
-            const conn = this.connection();
+            const conn = connection();
             await conn.connect();
             const sql = 'SELECT * FROM products WHERE id=($1)';
             const result = await conn.query(sql, [id]);
@@ -64,7 +54,7 @@ export class Product{
     async create(product: ProductType): Promise<ProductType[]>{
         try {
             const sql = `INSERT INTO products(name, price, category) VALUES ($1, $2, $3)`;
-            const conn = this.connection();
+            const conn = connection();
             await conn.connect();
             const result = await conn.query(sql, [product.name, product.price, product.category]);
             const output = await conn.query('SELECT * FROM products WHERE name=($1)', [product.name]);
@@ -80,7 +70,7 @@ export class Product{
 
     async update(id: string, product: ProductType): Promise<ProductType[]>{
         try {
-            const conn = this.connection();
+            const conn = connection();
             const sql = 'UPDATE products SET name=($1), price=($2), category=($3) WHERE id=($4)';
             await conn.connect();
             const result = await conn.query(sql, [product.name, product.price, product.category, id]);
@@ -94,7 +84,7 @@ export class Product{
 
     async delete(id: string): Promise<ProductType[]>{
         try {
-            const conn = this.connection();
+            const conn = connection();
             const sql = 'DELETE FROM products WHERE id=($1)';
             await conn.connect();
             const result = await conn.query(sql,[id]);
@@ -105,24 +95,6 @@ export class Product{
         } catch (err) {
             throw new Error(`Could not delete product ${id}. Error: ${err}`)
         }
-    }
-
-    connection(): Pool{
-        const conn = ENV === "dev" ? new Pool({
-            host: POSTGRES_HOST,
-            port: Number(POSTGRES_PORT),
-            database: POSTGRES_DB,
-            user: POSTGRES_USER,
-            password: POSTGRES_PASSWORD,
-        }) : new Pool({
-            host: POSTGRES_HOST,
-            port: Number(POSTGRES_PORT),
-            database: POSTGRES_TEST_DB,
-            user: POSTGRES_USER,
-            password: POSTGRES_PASSWORD,
-        });
-
-        return conn;
     }
 
 

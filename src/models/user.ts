@@ -1,4 +1,4 @@
-import {connection} from '../handler/connection';
+import {connection} from '../handler/pgConnection';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 
@@ -31,6 +31,7 @@ export class User{
     }
 
     async index(): Promise<SignUp[]>{
+        
         const conn = connection();
         await conn.connect();
         const sql = 'SELECT * FROM users';
@@ -83,7 +84,7 @@ export class User{
         }
     }
 
-    async deleteUser(id: string): Promise<SignUp[]>{
+    async delete(id: string): Promise<SignUp[]>{
         const conn = connection();
         await conn.connect();
         const sql = 'DELETE FROM users WHERE id=($1)';
