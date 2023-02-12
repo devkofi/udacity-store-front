@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser';
 const app = express();
 const port = 3000;
 
-const {ENV}= process.env;
+//const {ENV}= process.env;
 const rootFolder: string = path.resolve(__dirname) + path.normalize("/views/");
 app.use(express.static(rootFolder));
 app.use(cookieParser());
