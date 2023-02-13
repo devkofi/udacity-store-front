@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.Product = void 0;
 var pgConnection_1 = require("../handler/pgConnection");
 var Product = /** @class */ (function () {
@@ -80,7 +80,7 @@ var Product = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         sql = 'SELECT * FROM products WHERE id=($1)';
-                        return [4 /*yield*/, conn.query(sql, [id])];
+                        return [4 /*yield*/, conn.query(sql, [Number(id)])];
                     case 2:
                         result = _a.sent();
                         conn.end();
@@ -149,7 +149,7 @@ var Product = /** @class */ (function () {
             });
         });
     };
-    Product.prototype.delete = function (id) {
+    Product.prototype["delete"] = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, output, err_5;
             return __generator(this, function (_a) {
