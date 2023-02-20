@@ -35,13 +35,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 var pgConnection_1 = require("../handler/pgConnection");
 var Product = /** @class */ (function () {
-    //conn: Pool;
-    function Product(environment) {
+    function Product() {
     }
+    //conn: Pool;
     Product.prototype.index = function () {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_1;
@@ -96,7 +96,7 @@ var Product = /** @class */ (function () {
     };
     Product.prototype.create = function (product) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, output, err_3;
+            var sql, conn, output, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -108,7 +108,7 @@ var Product = /** @class */ (function () {
                         _a.sent();
                         return [4 /*yield*/, conn.query(sql, [product.name, product.price, product.category])];
                     case 2:
-                        result = _a.sent();
+                        _a.sent();
                         return [4 /*yield*/, conn.query('SELECT * FROM products WHERE name=($1)', [product.name])];
                     case 3:
                         output = _a.sent();
@@ -149,9 +149,9 @@ var Product = /** @class */ (function () {
             });
         });
     };
-    Product.prototype["delete"] = function (id) {
+    Product.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, output, err_5;
+            var conn, sql, output, err_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -163,7 +163,7 @@ var Product = /** @class */ (function () {
                         _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
-                        result = _a.sent();
+                        _a.sent();
                         return [4 /*yield*/, conn.query('SELECT * FROM products')];
                     case 3:
                         output = _a.sent();

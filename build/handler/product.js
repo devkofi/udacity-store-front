@@ -35,18 +35,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var product_1 = require("../models/product");
 var popularProducts_1 = require("../service/popularProducts");
 var productsByCategory_1 = require("../service/productsByCategory");
 var auth_1 = require("../middleware/auth");
-var _a = process.env, ENV = _a.ENV, TOKEN_SECRET = _a.TOKEN_SECRET;
-var create_product = new product_1.Product(ENV);
+var create_product = new product_1.Product();
 var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var product;
     return __generator(this, function (_a) {
         try {
-            product = create_product.index().then(function (item) {
+            create_product.index().then(function (item) {
                 res.json(item);
             });
         }
@@ -58,10 +56,9 @@ var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, func
     });
 }); };
 var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var product;
     return __generator(this, function (_a) {
         try {
-            product = create_product.show(req.params.id).then(function (item) {
+            create_product.show(req.params.id).then(function (item) {
                 res.json(item);
             });
         }
@@ -73,7 +70,7 @@ var show = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
     });
 }); };
 var create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var new_product, product;
+    var new_product;
     return __generator(this, function (_a) {
         try {
             new_product = {
@@ -81,7 +78,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 price: req.body.price,
                 category: req.body.category
             };
-            product = create_product.create(new_product).then(function (item) {
+            create_product.create(new_product).then(function (item) {
                 res.json(item);
             });
         }
@@ -93,10 +90,9 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
     });
 }); };
 var update = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var product;
     return __generator(this, function (_a) {
         try {
-            product = create_product.update(req.params.id, { "name": req.body.name, "price": req.body.price, "category": req.body.category }).then(function (item) {
+            create_product.update(req.params.id, { "name": req.body.name, "price": req.body.price, "category": req.body.category }).then(function (item) {
                 res.json(item);
             });
         }
@@ -108,10 +104,9 @@ var update = function (req, res) { return __awaiter(void 0, void 0, void 0, func
     });
 }); };
 var deleteProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var product;
     return __generator(this, function (_a) {
         try {
-            product = create_product["delete"](req.params.id).then(function (item) {
+            create_product.delete(req.params.id).then(function () {
                 res.send('Successfully Deleted item');
             });
         }
@@ -123,10 +118,9 @@ var deleteProduct = function (req, res) { return __awaiter(void 0, void 0, void 
     });
 }); };
 var popularProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var popularProduct_1;
     return __generator(this, function (_a) {
         try {
-            popularProduct_1 = new popularProducts_1.PopularProducts(ENV).showPopular().then(function (item) {
+            new popularProducts_1.PopularProducts().showPopular().then(function (item) {
                 res.json(item);
             });
         }
@@ -138,10 +132,9 @@ var popularProduct = function (req, res) { return __awaiter(void 0, void 0, void
     });
 }); };
 var productsByCategory = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var productsByCategory_2;
     return __generator(this, function (_a) {
         try {
-            productsByCategory_2 = new productsByCategory_1.ProductsByCategory(ENV).showCategory(req.params.category).then(function (item) {
+            new productsByCategory_1.ProductsByCategory().showCategory(req.params.category).then(function (item) {
                 res.json(item);
             });
         }
@@ -177,6 +170,6 @@ var product_routes = function (app) {
     app.post('/products', auth_1.verifyAuthToken, create); //create
     app.get('/products/:id', show); //show
     app.put('/products/update', auth_1.verifyAuthToken, update); //update
-    app["delete"]('/products/:id', auth_1.verifyAuthToken, deleteProduct); //delete
+    app.delete('/products/:id', auth_1.verifyAuthToken, deleteProduct); //delete
 };
-exports["default"] = product_routes;
+exports.default = product_routes;

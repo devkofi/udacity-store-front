@@ -50,14 +50,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.PopularProducts = void 0;
 var product_1 = require("../models/product");
 var pgConnection_1 = require("../handler/pgConnection");
 var PopularProducts = /** @class */ (function (_super) {
     __extends(PopularProducts, _super);
-    function PopularProducts(environment) {
-        return _super.call(this, environment) || this;
+    function PopularProducts() {
+        return _super.call(this) || this;
     }
     PopularProducts.prototype.showPopular = function () {
         return __awaiter(this, void 0, void 0, function () {

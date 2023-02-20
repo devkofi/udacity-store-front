@@ -1,9 +1,9 @@
 import dotenv from 'dotenv'
 import { CompletedOrder } from '../../service/completedOrders';
 
-const {ENV} = process.env;
+dotenv.config();
 
-const completedOrder = new CompletedOrder((ENV as unknown) as string);
+const completedOrder = new CompletedOrder();
 
 describe("COMPLETED ORDER SERVICE TEST", ()=>{
     describe("Test Suite for Completed Order Service: ",()=>{
@@ -17,7 +17,7 @@ describe("COMPLETED ORDER SERVICE TEST", ()=>{
         
         it("index returns an array of the Order", async ()=>{
     
-            const results = await completedOrder.completed("1", "complete").then((item)=>{
+            await completedOrder.completed("1", "complete").then((item)=>{
                 expect(item.length).toBeGreaterThanOrEqual(0);
             });
             

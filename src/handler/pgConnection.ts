@@ -14,7 +14,7 @@ const {
 
 
 export const connection = (): Pool =>{
-    let conn = ENV === "dev" ? new Pool({
+    const conn = ENV === "dev" ? new Pool({
         host: POSTGRES_HOST,
         port: Number(POSTGRES_PORT),
         database: POSTGRES_DB,

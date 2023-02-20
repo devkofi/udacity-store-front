@@ -38,16 +38,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.user_routes = void 0;
 var user_1 = require("../models/user");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var dotenv_1 = __importDefault(require("dotenv"));
 var bcrypt_1 = __importDefault(require("bcrypt"));
 var auth_1 = require("../middleware/auth");
-var _a = process.env, ENV = _a.ENV, BCRYPT_PEPPER = _a.BCRYPT_PEPPER, TOKEN_SECRET = _a.TOKEN_SECRET;
-var user = new user_1.User(ENV);
+dotenv_1.default.config();
+var _a = process.env, BCRYPT_PEPPER = _a.BCRYPT_PEPPER, TOKEN_SECRET = _a.TOKEN_SECRET;
+var user = new user_1.User();
 var index = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var index_1, error_1;
+    var error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -57,7 +59,7 @@ var index = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                         res.json(item);
                     })];
             case 1:
-                index_1 = _a.sent();
+                _a.sent();
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _a.sent();
@@ -69,7 +71,7 @@ var index = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
     });
 }); };
 var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var show_1, error_2;
+    var error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -79,7 +81,7 @@ var show = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
                         res.json(item);
                     })];
             case 1:
-                show_1 = _a.sent();
+                _a.sent();
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _a.sent();
@@ -90,23 +92,18 @@ var show = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
         }
     });
 }); };
-var signIn = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var sign;
-    return __generator(this, function (_a) {
-        try {
-            sign = user.signIn({ email: req.body.email, password: req.body.password }).then(function (item) {
-                res.json(item);
-            });
-        }
-        catch (error) {
-            res.status(400);
-            res.json(error);
-        }
-        return [2 /*return*/];
-    });
-}); };
+// const signIn = async (req: Request, res: Response): Promise<void> =>{
+//     try {
+//         user.signIn({email: req.body.email, password: req.body.password}).then((item)=>{
+//             res.json(item);
+//         });
+//     } catch (error) {
+//         res.status(400);
+//         res.json((error as unknown) as string)
+//     }
+// }
 var signUp = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var temp_user, newUser, err_1;
+    var temp_user, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -121,7 +118,7 @@ var signUp = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 _a.trys.push([1, 3, , 4]);
                 return [4 /*yield*/, user.signUp(temp_user)];
             case 2:
-                newUser = _a.sent();
+                _a.sent();
                 //const token = jwt.sign({user: newUser}, (TOKEN_SECRET as unknown) as string);
                 //console.log(token);
                 //---------- USE HEADER ----------//
@@ -143,10 +140,9 @@ var signUp = function (req, res) { return __awaiter(void 0, void 0, void 0, func
     });
 }); };
 var deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var delUser;
     return __generator(this, function (_a) {
         try {
-            delUser = user["delete"](req.params.id).then(function (item) {
+            user.delete(req.params.id).then(function (item) {
                 res.json(item);
             });
         }
@@ -158,13 +154,13 @@ var deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, 
     });
 }); };
 var login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var auth, err_2;
+    var err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 return [4 /*yield*/, user.authenticate({ email: req.body.email, password: req.body.password }).then(function (item) {
-                        var token = jsonwebtoken_1["default"].sign({ user: item }, TOKEN_SECRET, { algorithm: 'HS256' });
+                        var token = jsonwebtoken_1.default.sign({ user: item }, TOKEN_SECRET, { algorithm: 'HS256' });
                         //console.log(token)
                         // res.cookie('token', token, {
                         //     httpOnly: true,
@@ -174,7 +170,7 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                         // });
                         res.set('x-access-token', token);
                         // console.log(item);
-                        if (bcrypt_1["default"].compareSync(req.body.password + BCRYPT_PEPPER, item === null || item === void 0 ? void 0 : item.password)) {
+                        if (bcrypt_1.default.compareSync(req.body.password + BCRYPT_PEPPER, item === null || item === void 0 ? void 0 : item.password)) {
                             res.status(200);
                             res.send(res.get('x-access-token'));
                         }
@@ -183,7 +179,7 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                         }
                     })];
             case 1:
-                auth = _a.sent();
+                _a.sent();
                 return [3 /*break*/, 3];
             case 2:
                 err_2 = _a.sent();
@@ -198,7 +194,7 @@ var user_routes = function (app) {
     app.get('/users', auth_1.verifyAuthToken, index);
     app.get('/users/:id', auth_1.verifyAuthToken, show);
     app.post('/users/signup', signUp);
-    app["delete"]('/users', auth_1.verifyAuthToken, deleteUser);
+    app.delete('/users', auth_1.verifyAuthToken, deleteUser);
     app.post('/users/login', login);
 };
 exports.user_routes = user_routes;

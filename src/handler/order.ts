@@ -3,21 +3,20 @@ import {Order, OrderType} from '../models/order';
 import { CompletedOrder } from '../service/completedOrders';
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt';
-import path from 'path';
 
+dotenv.config()
+const {TOKEN_SECRET} = process.env;
 
-const {ENV,BCRYPT_PEPPER, TOKEN_SECRET, SALT_ROUNDS} = process.env;
-
-const order = new Order((ENV as unknown) as string);
-const completedOrder = new CompletedOrder((ENV as unknown) as string)
+const order = new Order();
+const completedOrder = new CompletedOrder()
 
 const index = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const index = await order.index().then((item)=>{
+        await order.index().then((item)=>{
             console.log(item);
             res.json(item)
-        })
+        });
+        
     } catch (error) {
         res.status(400);
         res.json((error))
@@ -27,7 +26,7 @@ const index = async (req: Request, res: Response): Promise<void> =>{
 
 const show = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const show = await order.show(req.params.id).then((item)=>{
+        await order.show(req.params.id).then((item)=>{
         res.json(item);
     })
     } catch (error) {
@@ -46,7 +45,7 @@ const create = async (req: Request, res: Response): Promise<void> =>{
             order_status: (req.body.order_status as unknown) as string
       };
     
-      const create_order = order.create(new_order).then((item)=>{
+      order.create(new_order).then((item)=>{
           res.json(item);
       });
     } catch (error) {
@@ -61,7 +60,7 @@ const create = async (req: Request, res: Response): Promise<void> =>{
 const deleteOrder = async (req: Request, res:Response): Promise<void> =>{
 
     try {
-        const deleteCurrentOrder = order.delete(req.params.id).then((item)=>{
+        order.delete(req.params.id).then((item)=>{
             res.json(item);
         })
     } catch (error) {
@@ -76,7 +75,7 @@ const deleteOrder = async (req: Request, res:Response): Promise<void> =>{
 const completedOrders = async (req: Request, res: Response): Promise<void> =>{
 
     try {
-        const show = await completedOrder.completed(req.params.user_id, req.params.order_status).then((item)=>{
+        await completedOrder.completed(req.params.user_id, req.params.order_status).then((item)=>{
             res.json(item);
         })
     } catch (error) {
@@ -92,7 +91,7 @@ const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
     
     try {
         if(typeof token !== 'undefined'){
-            const verify = async () =>{
+            async () =>{
                 await jwt.verify(token, (TOKEN_SECRET as unknown) as string);
             }
             next()

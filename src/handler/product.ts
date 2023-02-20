@@ -1,18 +1,15 @@
-import express, {Request, Response, NextFunction} from 'express';
+import express, {Request, Response} from 'express';
 import {ProductType, Product} from '../models/product';
-import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
 import { PopularProducts } from '../service/popularProducts';
 import { ProductsByCategory } from '../service/productsByCategory';
 import { verifyAuthToken } from '../middleware/auth';
 
-const {ENV, TOKEN_SECRET} = process.env;
 
-const create_product = new Product((ENV as unknown) as string);
+const create_product = new Product();
 
 const index = async (_req: Request, res: Response): Promise<void> =>{
     try {
-        const product = create_product.index().then((item)=>{
+        create_product.index().then((item)=>{
             res.json(item);
         });
     } catch (error) {
@@ -24,7 +21,7 @@ const index = async (_req: Request, res: Response): Promise<void> =>{
 
 const show = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const product = create_product.show(req.params.id).then((item)=>{
+        create_product.show(req.params.id).then((item)=>{
             res.json(item);
         });
     } catch (error) {
@@ -42,7 +39,7 @@ const create = async (req: Request, res: Response): Promise<void> =>{
             category:(req.body.category as unknown) as string
         };
       
-        const product = create_product.create(new_product).then((item)=>{
+        create_product.create(new_product).then((item)=>{
             res.json(item);
         });
     } catch (error) {
@@ -55,7 +52,7 @@ const create = async (req: Request, res: Response): Promise<void> =>{
 
 const update = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const product = create_product.update(req.params.id, {"name": ((req.body.name as unknown) as string), "price": (req.body.price as unknown) as number, "category": (req.body.category as unknown) as string}).then((item)=>{
+        create_product.update(req.params.id, {"name": ((req.body.name as unknown) as string), "price": (req.body.price as unknown) as number, "category": (req.body.category as unknown) as string}).then((item)=>{
             res.json(item);
         });
     } catch (error) {
@@ -68,7 +65,7 @@ const update = async (req: Request, res: Response): Promise<void> =>{
 
 const deleteProduct = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const product = create_product.delete(req.params.id).then((item)=>{
+        create_product.delete(req.params.id).then(()=>{
             res.send('Successfully Deleted item');
         });
     } catch (error) {
@@ -80,7 +77,7 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> =>{
 
 const popularProduct = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const popularProduct = new PopularProducts((ENV as unknown) as string).showPopular().then((item)=>{
+        new PopularProducts().showPopular().then((item)=>{
             res.json(item);
         });
     } catch (error) {
@@ -91,7 +88,7 @@ const popularProduct = async (req: Request, res: Response): Promise<void> =>{
 
 const productsByCategory = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const productsByCategory = new ProductsByCategory((ENV as unknown) as string).showCategory(req.params.category).then((item)=>{
+        new ProductsByCategory().showCategory(req.params.category).then((item)=>{
             res.json(item);
         });
     } catch (error) {

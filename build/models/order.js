@@ -35,17 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Order = void 0;
-var dotenv_1 = __importDefault(require("dotenv"));
 var pgConnection_1 = require("../handler/pgConnection");
-dotenv_1["default"].config();
-var ENV = process.env.ENV;
 var Order = /** @class */ (function () {
-    function Order(environment) {
+    function Order() {
     }
     Order.prototype.index = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -75,7 +69,7 @@ var Order = /** @class */ (function () {
     };
     Order.prototype.create = function (order) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, output, err_2;
+            var sql, conn, output, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -87,7 +81,7 @@ var Order = /** @class */ (function () {
                         _a.sent();
                         return [4 /*yield*/, conn.query(sql, [order.product_id, order.product_quantity, order.user_id, order.order_status.toLowerCase()])];
                     case 2:
-                        result = _a.sent();
+                        _a.sent();
                         return [4 /*yield*/, conn.query('SELECT * FROM orders WHERE product_id=($1)', [order.product_id])];
                     case 3:
                         output = _a.sent();
@@ -128,9 +122,9 @@ var Order = /** @class */ (function () {
             });
         });
     };
-    Order.prototype["delete"] = function (id) {
+    Order.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, output, err_4;
+            var conn, sql, output, err_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -142,7 +136,7 @@ var Order = /** @class */ (function () {
                         sql = 'DELETE FROM orders WHERE id=($1)';
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
-                        result = _a.sent();
+                        _a.sent();
                         return [4 /*yield*/, conn.query('SELECT * FROM orders')];
                     case 3:
                         output = _a.sent();

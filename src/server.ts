@@ -1,18 +1,15 @@
-import express, {Request, Response, NextFunction} from "express";
+import express from "express";
 import path from 'path';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from "body-parser";
 import product_routes from "./handler/product";
 import order_routes from "./handler/order";
 import {user_routes} from "./handler/user";
-import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
-import { access } from "fs";
+
 const app = express();
 const port = 3000;
 
-const {ENV}= process.env;
 const rootFolder: string = path.resolve(__dirname) + path.normalize("/views/");
 app.use(express.static(rootFolder));
 app.use(cookieParser());

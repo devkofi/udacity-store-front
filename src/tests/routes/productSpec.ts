@@ -8,12 +8,10 @@ dotenv.config();
 const request = supertest(app);
 
 
-const {ENV} = process.env;
+const product = new Product();
 
-const product = new Product((ENV as unknown) as string);
-
-const result = async () => {
-  const result = await product.create({
+async () => {
+  await product.create({
       name: "Pineapple",
       price: 20.5,
       category: "fruits"

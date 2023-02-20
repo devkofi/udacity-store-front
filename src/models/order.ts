@@ -1,12 +1,4 @@
-import dotenv from 'dotenv'
-import {Pool} from 'pg';
 import { connection } from '../handler/pgConnection';
-
-dotenv.config()
-const {
-    ENV
-} = process.env 
-
 
 export type OrderType = {
     id?: number;
@@ -17,10 +9,7 @@ export type OrderType = {
 };
 
 export class Order{
-    constructor(environment: string){
-
-    }
-
+    
     async index(): Promise<OrderType[]>{
         try {
             
@@ -43,7 +32,7 @@ export class Order{
             const sql = `INSERT INTO orders(product_id, product_quantity, user_id, order_status) VALUES ($1, $2, $3, $4)`;
             const conn = connection();
             await conn.connect();
-            const result = await conn.query(sql, [order.product_id, order.product_quantity, order.user_id, order.order_status.toLowerCase()]);
+            await conn.query(sql, [order.product_id, order.product_quantity, order.user_id, order.order_status.toLowerCase()]);
             const output = await conn.query('SELECT * FROM orders WHERE product_id=($1)', [order.product_id]);
             
             conn.end();
@@ -78,7 +67,7 @@ export class Order{
             const conn = connection();
             await conn.connect();
             const sql = 'DELETE FROM orders WHERE id=($1)';
-            const result = await conn.query(sql, [id]);
+            await conn.query(sql, [id]);
             const output = await conn.query('SELECT * FROM orders');
             conn.end();
             //console.log(output.rows)

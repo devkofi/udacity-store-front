@@ -44,10 +44,10 @@ var order_1 = require("../../models/order");
 var product_1 = require("../../models/product");
 var user_1 = require("../../models/user");
 dotenv_1.default.config();
-var _a = process.env, ENV = _a.ENV, JASMINE_TEST_PASSWORD = _a.JASMINE_TEST_PASSWORD;
-var order = new order_1.Order(ENV);
-var product = new product_1.Product(ENV);
-var user = new user_1.User(ENV);
+var JASMINE_TEST_PASSWORD = process.env.JASMINE_TEST_PASSWORD;
+var order = new order_1.Order();
+var product = new product_1.Product();
+var user = new user_1.User();
 describe("ORDER TEST: ", function () {
     describe("Test Suite for Order Methods: ", function () {
         it("should have an index method", function () {
@@ -65,15 +65,14 @@ describe("ORDER TEST: ", function () {
     });
     describe("Test Suite for Order Length of Array: ", function () {
         it('create method should add an order', function () { return __awaiter(void 0, void 0, void 0, function () {
-            var createProduct;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, product.create({
                             name: "Pineapple",
                             price: 20.5,
                             category: "fruits"
-                        }).then(function (item) {
-                            var createUser = function () { return __awaiter(void 0, void 0, void 0, function () {
+                        }).then(function () {
+                            (function () { return __awaiter(void 0, void 0, void 0, function () {
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
                                         case 0: return [4 /*yield*/, user.signUp({
@@ -81,8 +80,8 @@ describe("ORDER TEST: ", function () {
                                                 last_name: "Atta",
                                                 email: "sammy@gmail.com",
                                                 password: JASMINE_TEST_PASSWORD
-                                            }).then(function (item) {
-                                                var order1 = function () { return __awaiter(void 0, void 0, void 0, function () {
+                                            }).then(function () {
+                                                (function () { return __awaiter(void 0, void 0, void 0, function () {
                                                     return __generator(this, function (_a) {
                                                         switch (_a.label) {
                                                             case 0: return [4 /*yield*/, order.create({
@@ -94,8 +93,8 @@ describe("ORDER TEST: ", function () {
                                                             case 1: return [2 /*return*/, _a.sent()];
                                                         }
                                                     });
-                                                }); };
-                                                var order2 = function () { return __awaiter(void 0, void 0, void 0, function () {
+                                                }); });
+                                                (function () { return __awaiter(void 0, void 0, void 0, function () {
                                                     return __generator(this, function (_a) {
                                                         switch (_a.label) {
                                                             case 0: return [4 /*yield*/, order.create({
@@ -107,7 +106,7 @@ describe("ORDER TEST: ", function () {
                                                             case 1: return [2 /*return*/, _a.sent()];
                                                         }
                                                     });
-                                                }); };
+                                                }); });
                                                 var result = function () { return __awaiter(void 0, void 0, void 0, function () {
                                                     return __generator(this, function (_a) {
                                                         switch (_a.label) {
@@ -126,23 +125,22 @@ describe("ORDER TEST: ", function () {
                                         case 1: return [2 /*return*/, _a.sent()];
                                     }
                                 });
-                            }); };
+                            }); });
                         })];
                     case 1:
-                        createProduct = _a.sent();
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
         }); });
         it("index returns an array of orders", function () { return __awaiter(void 0, void 0, void 0, function () {
-            var results;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, order.index().then(function (item) {
                             expect(item.length).toBeGreaterThanOrEqual(0);
                         })];
                     case 1:
-                        results = _a.sent();
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });

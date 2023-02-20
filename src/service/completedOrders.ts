@@ -2,8 +2,8 @@ import { Order, OrderType } from "../models/order";
 import {connection} from "../handler/pgConnection";
 
 export class CompletedOrder extends Order{
-    constructor (environment: string){
-        super(environment);
+    constructor (){
+        super();
     }
 
     async completed(user_id:string, order_status: string): Promise<OrderType[]>{

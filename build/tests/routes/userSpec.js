@@ -45,16 +45,15 @@ var user_1 = require("../../models/user");
 var dotenv_1 = __importDefault(require("dotenv"));
 var request = (0, supertest_1.default)(server_1.default);
 dotenv_1.default.config();
-var _a = process.env, ENV = _a.ENV, JASMINE_TEST_PASSWORD = _a.JASMINE_TEST_PASSWORD;
-var user = new user_1.User(ENV);
+var JASMINE_TEST_PASSWORD = process.env.JASMINE_TEST_PASSWORD;
+var user = new user_1.User();
 describe("USER ENPOINT TEST", function () {
     describe("Test User Endpoint Responses", function () {
         var _this = this;
         it("get index endpoint", function () { return __awaiter(_this, void 0, void 0, function () {
-            var result;
             var _this = this;
             return __generator(this, function (_a) {
-                result = function () { return __awaiter(_this, void 0, void 0, function () {
+                (function () { return __awaiter(_this, void 0, void 0, function () {
                     var _this = this;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
@@ -78,15 +77,14 @@ describe("USER ENPOINT TEST", function () {
                             case 1: return [2 /*return*/, _a.sent()];
                         }
                     });
-                }); };
+                }); });
                 return [2 /*return*/];
             });
         }); });
         it("get user with an id of 1", function () { return __awaiter(_this, void 0, void 0, function () {
-            var result;
             var _this = this;
             return __generator(this, function (_a) {
-                result = function () { return __awaiter(_this, void 0, void 0, function () {
+                (function () { return __awaiter(_this, void 0, void 0, function () {
                     var _this = this;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
@@ -108,7 +106,7 @@ describe("USER ENPOINT TEST", function () {
                             case 1: return [2 /*return*/, _a.sent()];
                         }
                     });
-                }); };
+                }); });
                 return [2 /*return*/];
             });
         }); });

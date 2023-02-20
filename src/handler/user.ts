@@ -1,17 +1,18 @@
-import {NextFunction, Request, Response, Application} from "express";
-import {User, SignIn, SignUp} from '../models/user';
+import {Request, Response, Application} from "express";
+import {User, SignUp} from '../models/user';
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import {verifyAuthToken } from "../middleware/auth";
 
-const {ENV,BCRYPT_PEPPER, TOKEN_SECRET} = process.env;
+dotenv.config();
+const {BCRYPT_PEPPER, TOKEN_SECRET} = process.env;
 
-const user = new User((ENV as unknown) as string);
+const user = new User();
 
 const index = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const index = await user.index().then((item)=>{
+        await user.index().then((item)=>{
             //console.log(item);
             res.json(item)
         })
@@ -25,7 +26,7 @@ const index = async (req: Request, res: Response): Promise<void> =>{
 
 const show = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const show = await user.show(req.params.id).then((item)=>{
+        await user.show(req.params.id).then((item)=>{
             console.log(item);
             res.json(item);
         })
@@ -38,18 +39,18 @@ const show = async (req: Request, res: Response): Promise<void> =>{
     
 }
 
-const signIn = async (req: Request, res: Response): Promise<void> =>{
-    try {
-        const sign = user.signIn({email: req.body.email, password: req.body.password}).then((item)=>{
-            res.json(item);
-        });
+// const signIn = async (req: Request, res: Response): Promise<void> =>{
+//     try {
+//         user.signIn({email: req.body.email, password: req.body.password}).then((item)=>{
+//             res.json(item);
+//         });
         
-    } catch (error) {
-        res.status(400);
-        res.json((error as unknown) as string)
-    }
+//     } catch (error) {
+//         res.status(400);
+//         res.json((error as unknown) as string)
+//     }
     
-}
+// }
 
 const signUp = async (req: Request, res: Response): Promise<void> =>{
     const temp_user: SignUp = {
@@ -60,7 +61,7 @@ const signUp = async (req: Request, res: Response): Promise<void> =>{
     }
 
     try {
-        const newUser = await user.signUp(temp_user);
+        await user.signUp(temp_user);
         
         //const token = jwt.sign({user: newUser}, (TOKEN_SECRET as unknown) as string);
         
@@ -84,7 +85,7 @@ const signUp = async (req: Request, res: Response): Promise<void> =>{
 
 const deleteUser = async (req: Request, res:Response): Promise<void> =>{
     try {
-        const delUser = user.delete(req.params.id).then((item)=>{
+        user.delete(req.params.id).then((item)=>{
             res.json(item);
         })
     } catch (error) {
@@ -98,7 +99,7 @@ const login = async(req: Request, res: Response): Promise<void> =>{
     
     try {
 
-        const auth = await user.authenticate({email: req.body.email, password: req.body.password}).then((item)=>{
+        await user.authenticate({email: req.body.email, password: req.body.password}).then((item)=>{
         const token = jwt.sign({user: item}, (TOKEN_SECRET as unknown) as string, {algorithm: 'HS256'});
         //console.log(token)
       

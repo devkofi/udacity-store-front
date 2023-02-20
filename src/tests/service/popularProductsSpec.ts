@@ -1,9 +1,7 @@
-import dotenv from 'dotenv'
 import { PopularProducts } from '../../service/popularProducts';
 
-const {ENV} = process.env;
 
-const popularProducts = new PopularProducts((ENV as unknown) as string);
+const popularProducts = new PopularProducts();
 
 describe("POPULAR PRODUCT SERVICE TEST", ()=>{
     describe("Test Suite for Popular Products Service: ",()=>{
@@ -17,7 +15,7 @@ describe("POPULAR PRODUCT SERVICE TEST", ()=>{
         
         it("popularProducts returns an array of the Popular Products", async ()=>{
     
-            const results = await popularProducts.showPopular().then((item)=>{
+            await popularProducts.showPopular().then((item)=>{
                 expect(item.length).toBeGreaterThanOrEqual(0);
             });
             

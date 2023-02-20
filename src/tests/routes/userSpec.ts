@@ -7,16 +7,16 @@ const request = supertest(app);
 
 dotenv.config();
 
-const {ENV, JASMINE_TEST_PASSWORD} = process.env;
+const {JASMINE_TEST_PASSWORD} = process.env;
 
-const user = new User((ENV as unknown) as string);
+const user = new User();
 
 
 
 describe("USER ENPOINT TEST", ()=>{
   describe("Test User Endpoint Responses", function () {
     it("get index endpoint", async () => {
-      const result = async () => await user.signUp({
+      async () => await user.signUp({
         first_name: "Kofi Nyarko",
         last_name: "Kumi",
         email: "someone@gmail.com",
@@ -28,7 +28,7 @@ describe("USER ENPOINT TEST", ()=>{
     });
   
     it("get user with an id of 1", async () => {
-      const result = async ()=> await user.signIn({
+      async ()=> await user.signIn({
         email: "someone@gmail.com",
         password: (JASMINE_TEST_PASSWORD as unknown) as string
       }).then(async ()=>{

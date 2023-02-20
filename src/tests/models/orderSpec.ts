@@ -5,11 +5,11 @@ import { User } from '../../models/user';
 
 dotenv.config();
 
-const {ENV, JASMINE_TEST_PASSWORD} = process.env;
+const {JASMINE_TEST_PASSWORD} = process.env;
 
-const order = new Order((ENV as unknown) as string);
-const product = new Product((ENV as unknown) as string);
-const user = new User((ENV as unknown) as string);
+const order = new Order();
+const product = new Product();
+const user = new User();
 
 describe("ORDER TEST: ",()=>{
     describe("Test Suite for Order Methods: ", ()=>{
@@ -34,24 +34,24 @@ describe("ORDER TEST: ",()=>{
     describe("Test Suite for Order Length of Array: ",()=>{
     
         it('create method should add an order', async () => {
-            const createProduct = await product.create({
+            await product.create({
                 name: "Pineapple",
                 price: 20.5,
                 category: "fruits"
-            }).then((item)=>{
-                const createUser = async() =>await user.signUp({
+            }).then(()=>{
+                async() =>await user.signUp({
                     first_name: "Samuel",
                     last_name: "Atta",
                     email: "sammy@gmail.com",
                     password: (JASMINE_TEST_PASSWORD as unknown) as string
-                }).then((item)=>{
-                    const order1 = async() =>await order.create({
+                }).then(()=>{
+                    async() =>await order.create({
                         product_id: 1,
                         product_quantity: 4,
                         user_id: 1,
                         order_status: "complete"
                     });
-                    const order2 = async() =>await order.create({
+                    async() =>await order.create({
                         product_id: 1,
                         product_quantity: 4,
                         user_id: 1,
@@ -72,7 +72,7 @@ describe("ORDER TEST: ",()=>{
     
         it("index returns an array of orders", async ()=>{
     
-            const results = await order.index().then((item)=>{
+            await order.index().then((item)=>{
                 expect(item.length).toBeGreaterThanOrEqual(0);
             });
             

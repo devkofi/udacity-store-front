@@ -45,10 +45,8 @@ var product_1 = require("../../models/product");
 var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 var request = (0, supertest_1.default)(server_1.default);
-var ENV = process.env.ENV;
-var product = new product_1.Product(ENV);
-var result = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var result;
+var product = new product_1.Product();
+(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, product.create({
@@ -57,11 +55,11 @@ var result = function () { return __awaiter(void 0, void 0, void 0, function () 
                     category: "fruits"
                 })];
             case 1:
-                result = _a.sent();
+                _a.sent();
                 return [2 /*return*/];
         }
     });
-}); };
+}); });
 describe("PRODUCT ENDPOINT TEST", function () {
     describe("Test Product Endpoint Responses", function () {
         var _this = this;

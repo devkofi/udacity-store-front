@@ -25,7 +25,7 @@ export type SignIn = {
 export class User{
     pepper: string;
     salt: string;
-    constructor(environment: string){
+    constructor(){
         this.pepper = (BCRYPT_PEPPER as unknown) as string;
         this.salt = (SALT_ROUNDS as unknown) as string;
     }
@@ -57,7 +57,7 @@ export class User{
             await conn.connect();
             const sql = 'INSERT INTO users(first_name, last_name, email, password) VALUES ($1, $2, $3, $4)';
             const hash = await bcrypt.hash(signUp.password + this.pepper, parseInt(this.salt));
-            const result = await conn.query(sql,[signUp.first_name, signUp.last_name, signUp.email, hash]);
+            await conn.query(sql,[signUp.first_name, signUp.last_name, signUp.email, hash]);
             const output = await conn.query('SELECT * FROM users WHERE email=($1)', [signUp.email]);
             conn.end();
             //console.log(output.rows)
@@ -88,7 +88,7 @@ export class User{
         const conn = connection();
         await conn.connect();
         const sql = 'DELETE FROM users WHERE id=($1)';
-        const result = await conn.query(sql, [id]);
+        await conn.query(sql, [id]);
         const output = await conn.query('SELECT * FROM users');
         conn.end();
         //console.log(output.rows);

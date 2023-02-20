@@ -35,16 +35,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var dotenv_1 = __importDefault(require("dotenv"));
 var product_1 = require("../../models/product");
-dotenv_1.default.config();
-var ENV = process.env.ENV;
-var product = new product_1.Product(ENV);
-var product1 = function () { return __awaiter(void 0, void 0, void 0, function () {
+var product = new product_1.Product();
+(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, product.create({
@@ -111,7 +105,7 @@ var product1 = function () { return __awaiter(void 0, void 0, void 0, function (
             case 1: return [2 /*return*/, _a.sent()];
         }
     });
-}); };
+}); });
 describe("PRODUCT TEST: ", function () {
     describe("Test Suite for Product Methods: ", function () {
         it("should have an index method", function () {
@@ -145,14 +139,13 @@ describe("PRODUCT TEST: ", function () {
             });
         }); });
         it("index returns an array of products", function () { return __awaiter(void 0, void 0, void 0, function () {
-            var results;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, product.index().then(function (item) {
                             expect(item.length).toBeGreaterThanOrEqual(0);
                         })];
                     case 1:
-                        results = _a.sent();
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });

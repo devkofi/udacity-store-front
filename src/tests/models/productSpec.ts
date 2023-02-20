@@ -1,13 +1,9 @@
-import dotenv from 'dotenv'
 import { Product } from '../../models/product';
 
-dotenv.config();
 
-const {ENV} = process.env;
+const product = new Product();
 
-const product = new Product((ENV as unknown) as string);
-
-const product1 = async ()=>await product.create({
+async ()=>await product.create({
     name: "Apple",
     price: 10.0,
     category: "fruits"
@@ -73,7 +69,7 @@ describe("PRODUCT TEST: ",()=>{
     
         it("index returns an array of products", async ()=>{
     
-            const results = await product.index().then((item)=>{
+            await product.index().then((item)=>{
                 expect(item.length).toBeGreaterThanOrEqual(0);
             });
             

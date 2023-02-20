@@ -1,5 +1,3 @@
-import dotenv from 'dotenv'
-import {Pool} from 'pg';
 import { connection } from '../handler/pgConnection';
 
 //dotenv.config()
@@ -15,10 +13,6 @@ export type ProductType = {
 export class Product{
     //conn: Pool;
 
-    constructor(environment: string){
-        
-    }
-    
     async index(): Promise<ProductType[]>{
         try{
             const conn = connection();
@@ -57,7 +51,7 @@ export class Product{
             const sql = `INSERT INTO products(name, price, category) VALUES ($1, $2, $3)`;
             const conn = connection();
             await conn.connect();
-            const result = await conn.query(sql, [product.name, product.price, product.category]);
+            await conn.query(sql, [product.name, product.price, product.category]);
             const output = await conn.query('SELECT * FROM products WHERE name=($1)', [product.name]);
             
             conn.end();
@@ -88,7 +82,7 @@ export class Product{
             const conn = connection();
             const sql = 'DELETE FROM products WHERE id=($1)';
             await conn.connect();
-            const result = await conn.query(sql,[id]);
+            await conn.query(sql,[id]);
             const output = await conn.query('SELECT * FROM products');
             conn.end();
             //console.log(output.rows)

@@ -5,16 +5,16 @@ import dotenv from 'dotenv';
 import { User } from "../../models/user";
 dotenv.config();
 
-const {ENV, JASMINE_TEST_PASSWORD} = process.env;
+const {JASMINE_TEST_PASSWORD} = process.env;
 
-const order = new Order((ENV as unknown) as string);
-const user = new User((ENV as unknown) as string);
+const order = new Order();
+const user = new User();
 const request = supertest(app);
 
 describe("ORDER ENPOINT TEST", ()=>{
   describe("Test Order Enpoint Responses", function () {
     it("get index endpoint", async () => {
-      const result = async ()=> await user.signIn({
+      async ()=> await user.signIn({
         email: "someone@gmail.com",
         password: (JASMINE_TEST_PASSWORD as unknown) as string
       }).then(async ()=>{
@@ -40,7 +40,7 @@ describe("ORDER ENPOINT TEST", ()=>{
     })});
   
     it("show a specific order", async () => {
-      const result = async ()=> await user.signIn({
+      async ()=> await user.signIn({
         email: "someone@gmail.com",
         password: (JASMINE_TEST_PASSWORD as unknown) as string
       }).then(async ()=>{

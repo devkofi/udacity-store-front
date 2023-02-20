@@ -3,13 +3,13 @@ import { Product, ProductType } from "../models/product";
 import {connection} from "../handler/pgConnection";
 
 export class PopularProducts extends Product{
-    constructor (environment: string){
-        super(environment);
+    constructor (){
+        super();
     }
 
     async showPopular(): Promise<ProductType[]>{
         try{
-            // @ts-ignore
+            
             const conn = connection();
             await conn.connect();
             const sql = 'SELECT * FROM products LIMIT 5';

@@ -3,11 +3,11 @@ import { User } from '../../models/user';
 
 dotenv.config();
 
-const {ENV, JASMINE_TEST_PASSWORD} = process.env;
+const {JASMINE_TEST_PASSWORD} = process.env;
 
-const user = new User((ENV as unknown) as string);
+const user = new User();
 
-const users = async() => await user.signUp({
+async() => await user.signUp({
     first_name: "Martha",
     last_name: "Bupay",
     email: "bupay@gmail.com",
@@ -52,7 +52,7 @@ describe("USERS TEST",()=>{
 
         it("index returns an array of users", async ()=>{
     
-            const results = await user.index().then((item)=>{
+            await user.index().then((item)=>{
                 expect(item.length).toBeGreaterThanOrEqual(0);
             });
             

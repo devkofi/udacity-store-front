@@ -42,9 +42,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var dotenv_1 = __importDefault(require("dotenv"));
 var user_1 = require("../../models/user");
 dotenv_1.default.config();
-var _a = process.env, ENV = _a.ENV, JASMINE_TEST_PASSWORD = _a.JASMINE_TEST_PASSWORD;
-var user = new user_1.User(ENV);
-var users = function () { return __awaiter(void 0, void 0, void 0, function () {
+var JASMINE_TEST_PASSWORD = process.env.JASMINE_TEST_PASSWORD;
+var user = new user_1.User();
+(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, user.signUp({
@@ -70,7 +70,7 @@ var users = function () { return __awaiter(void 0, void 0, void 0, function () {
             case 1: return [2 /*return*/, _a.sent()];
         }
     });
-}); };
+}); });
 describe("USERS TEST", function () {
     describe("Test Suite for Users Methods: ", function () {
         it("should have an index method", function () {
@@ -94,14 +94,13 @@ describe("USERS TEST", function () {
     });
     describe("Test Suite for Length of Array: ", function () {
         it("index returns an array of users", function () { return __awaiter(void 0, void 0, void 0, function () {
-            var results;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, user.index().then(function (item) {
                             expect(item.length).toBeGreaterThanOrEqual(0);
                         })];
                     case 1:
-                        results = _a.sent();
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
