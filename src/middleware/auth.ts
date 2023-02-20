@@ -1,20 +1,18 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 //import { HEADER } from "../handler/user";
 
-dotenv.config()
-const {
-    TOKEN_SECRET
-} = process.env
+dotenv.config();
+const { TOKEN_SECRET } = process.env;
 
 export interface CustomRequest extends Request {
-    token: string | jwt.JwtPayload;
-   }
+  token: string | jwt.JwtPayload;
+}
 
 // const verifyCookieAuthToken = (req: Request, res: Response, next: NextFunction) =>{
 //     const token = req.cookies.token;
-    
+
 //     try {
 //         if(typeof token !== 'undefined'){
 //             const verify = async () =>{
@@ -25,7 +23,7 @@ export interface CustomRequest extends Request {
 //         else{
 //             res.redirect("/login")
 //         }
-        
+
 //     } catch (error) {
 //         console.log(error)
 //         res.clearCookie("token");
@@ -39,7 +37,7 @@ export interface CustomRequest extends Request {
 // //     console.log("Token: " + token);
 // //     try {
 // //         const decoded = jwt.verify(String(token), String(process.env.JWT_TOKEN));
-        
+
 // //         //HEADER.get() = (decoded as unknown) as string;
 // //       } catch (err) {
 // //         return res.status(401).send("Invalid Token");
@@ -54,7 +52,7 @@ export interface CustomRequest extends Request {
 //     //console.log("Token: " + token);
 //     try {
 //         const decoded = jwt.verify(String(token), String(TOKEN_SECRET));
-        
+
 //       } catch (err) {
 //         return res.status(401).send("Invalid Token");
 //       }
@@ -62,21 +60,25 @@ export interface CustomRequest extends Request {
 //       next();
 // }
 
-const verifyAuthToken = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      //const token = req.header('Authorization')?.replace('Bearer ', '');
-      const token = req.headers.authorization?.split(' ')[1];
-   
-      if (!token) {
-        throw new Error();
-      }
-   
-      const decoded = jwt.verify(token, String(TOKEN_SECRET));
-      (req as CustomRequest).token = decoded;
-   
-      next();
-    } catch (err) {
-      res.status(401).send('Please authenticate');
+const verifyAuthToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    //const token = req.header('Authorization')?.replace('Bearer ', '');
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      throw new Error();
     }
+
+    const decoded = jwt.verify(token, String(TOKEN_SECRET));
+    (req as CustomRequest).token = decoded;
+
+    next();
+  } catch (err) {
+    res.status(401).send("Please authenticate");
+  }
 };
-export {verifyAuthToken};
+export { verifyAuthToken };
