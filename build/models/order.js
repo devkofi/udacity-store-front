@@ -38,11 +38,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.Order = void 0;
 var dotenv_1 = __importDefault(require("dotenv"));
 var pgConnection_1 = require("../handler/pgConnection");
-dotenv_1.default.config();
+dotenv_1["default"].config();
 var ENV = process.env.ENV;
 var Order = /** @class */ (function () {
     function Order(environment) {
@@ -128,7 +128,7 @@ var Order = /** @class */ (function () {
             });
         });
     };
-    Order.prototype.delete = function (id) {
+    Order.prototype["delete"] = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, output, err_4;
             return __generator(this, function (_a) {

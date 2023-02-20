@@ -50,7 +50,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.CompletedOrder = void 0;
 var order_1 = require("../models/order");
 var pgConnection_1 = require("../handler/pgConnection");

@@ -80,7 +80,7 @@ var Product = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         sql = 'SELECT * FROM products WHERE id=($1)';
-                        return [4 /*yield*/, conn.query(sql, [Number(id)])];
+                        return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();
                         conn.end();

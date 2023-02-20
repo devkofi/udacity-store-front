@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.user_routes = void 0;
 var user_1 = require("../models/user");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -146,7 +146,7 @@ var deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, 
     var delUser;
     return __generator(this, function (_a) {
         try {
-            delUser = user.delete(req.params.id).then(function (item) {
+            delUser = user["delete"](req.params.id).then(function (item) {
                 res.json(item);
             });
         }
@@ -164,7 +164,7 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 return [4 /*yield*/, user.authenticate({ email: req.body.email, password: req.body.password }).then(function (item) {
-                        var token = jsonwebtoken_1.default.sign({ user: item }, TOKEN_SECRET, { algorithm: 'HS256' });
+                        var token = jsonwebtoken_1["default"].sign({ user: item }, TOKEN_SECRET, { algorithm: 'HS256' });
                         //console.log(token)
                         // res.cookie('token', token, {
                         //     httpOnly: true,
@@ -174,7 +174,7 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                         // });
                         res.set('x-access-token', token);
                         // console.log(item);
-                        if (bcrypt_1.default.compareSync(req.body.password + BCRYPT_PEPPER, item === null || item === void 0 ? void 0 : item.password)) {
+                        if (bcrypt_1["default"].compareSync(req.body.password + BCRYPT_PEPPER, item === null || item === void 0 ? void 0 : item.password)) {
                             res.status(200);
                             res.send(res.get('x-access-token'));
                         }
@@ -198,7 +198,7 @@ var user_routes = function (app) {
     app.get('/users', auth_1.verifyAuthToken, index);
     app.get('/users/:id', auth_1.verifyAuthToken, show);
     app.post('/users/signup', signUp);
-    app.delete('/users', auth_1.verifyAuthToken, deleteUser);
+    app["delete"]('/users', auth_1.verifyAuthToken, deleteUser);
     app.post('/users/login', login);
 };
 exports.user_routes = user_routes;

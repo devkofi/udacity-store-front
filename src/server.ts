@@ -12,15 +12,13 @@ import { access } from "fs";
 const app = express();
 const port = 3000;
 
-//const {ENV}= process.env;
+const {ENV}= process.env;
 const rootFolder: string = path.resolve(__dirname) + path.normalize("/views/");
 app.use(express.static(rootFolder));
 app.use(cookieParser());
 
 //Enable cors for all routes
-app.use(cors({
-  origin: '*'
-}));
+app.use(cors());
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))

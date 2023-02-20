@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var product_1 = require("../models/product");
 var popularProducts_1 = require("../service/popularProducts");
 var productsByCategory_1 = require("../service/productsByCategory");
@@ -111,7 +111,7 @@ var deleteProduct = function (req, res) { return __awaiter(void 0, void 0, void 
     var product;
     return __generator(this, function (_a) {
         try {
-            product = create_product.delete(req.params.id).then(function (item) {
+            product = create_product["delete"](req.params.id).then(function (item) {
                 res.send('Successfully Deleted item');
             });
         }
@@ -177,6 +177,6 @@ var product_routes = function (app) {
     app.post('/products', auth_1.verifyAuthToken, create); //create
     app.get('/products/:id', show); //show
     app.put('/products/update', auth_1.verifyAuthToken, update); //update
-    app.delete('/products/:id', auth_1.verifyAuthToken, deleteProduct); //delete
+    app["delete"]('/products/:id', auth_1.verifyAuthToken, deleteProduct); //delete
 };
-exports.default = product_routes;
+exports["default"] = product_routes;
