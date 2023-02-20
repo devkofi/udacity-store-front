@@ -41,7 +41,7 @@ export class Product{
             const conn = connection();
             await conn.connect();
             const sql = 'SELECT * FROM products WHERE id=($1)';
-            const result = await conn.query(sql, [Number(id)]);
+            const result = await conn.query(sql, [id]);
             conn.end();
             //console.log(result.rows)
             return result.rows;

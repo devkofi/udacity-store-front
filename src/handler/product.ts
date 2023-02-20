@@ -24,7 +24,7 @@ const index = async (_req: Request, res: Response): Promise<void> =>{
 
 const show = async (req: Request, res: Response): Promise<void> =>{
     try {
-        const product = create_product.show((req.params.id as unknown) as string).then((item)=>{
+        const product = create_product.show(req.params.id).then((item)=>{
             res.json(item);
         });
     } catch (error) {
