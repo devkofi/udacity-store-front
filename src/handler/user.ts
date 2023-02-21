@@ -131,7 +131,7 @@ const user_routes = (app: Application): void => {
   app.get("/users", verifyAuthToken, index);
   app.get("/users/:id", verifyAuthToken, show);
   app.post("/users/signup", signUp);
-  app.delete("/users", verifyAuthToken, deleteUser);
+  app.delete("/users/:id", verifyAuthToken, deleteUser);
   app.post("/users/login", login);
 };
 
