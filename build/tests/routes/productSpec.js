@@ -52,7 +52,7 @@ var product = new product_1.Product();
             case 0: return [4 /*yield*/, product.create({
                     name: "Pineapple",
                     price: 20.5,
-                    category: "fruits"
+                    category: "fruits",
                 })];
             case 1:
                 _a.sent();

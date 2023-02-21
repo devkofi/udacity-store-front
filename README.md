@@ -1,4 +1,4 @@
-# UDACITY IMAGE PROCESSING
+# UDACITY STOREFRONT BACKEND
 
 ---
 ## PROJECT OVERVIEW
@@ -10,19 +10,35 @@ This repo contains a basic Node and Express app to get you started in constructi
 
 ## PROJECT TASKS
 
-The main goal is to build an Image Processing API. In this project you will:
-* Initialize your project
-* Set up your project structure
-* Set up your server and create an API endpoint
-* Install Sharp and configure endpoint
-* Write your tests
-* Add caching
-* Test, Debug, and Refactor
+The main goal is to build an API for a shopping application. In this project you will:
+* Draft a database schema that covers all the data requirements.
+* Draft a map of endpoints to expose for the frontend.
 
+#### _Database Setup_
+* Create a connection to a Postgres database from the provided Node application.
+* Add tables and columns according to the database schema doc from step 1.
 
-Find [project rubric, here](https://review.udacity.com/#!/rubrics/3005/view).
+#### _Create Models_
+* Create models that facilitate CRUD operations on the database tables.
+* Create a test suite for each model in Jasmine.
 
-**The final implementation of the project showcases my abilities to build a backend for image processing.**
+#### _Create API Endpoints_
+* Create handler files for each model.
+* In each handler file, create RESTful endpoints for each model method.
+* Create a test suite that covers each endpoint with Jasmine.
+
+# REQUIRED TECHNOLOGIES
+Your application must make use of the following libraries:
+- Postgres for the database
+- Node/Express for the application logic
+- dotenv from npm for managing environment variables
+- db-migrate from npm for migrations
+- jsonwebtoken from npm for working with JWTs
+- jasmine from npm for testing
+
+Find [project rubric, here](https://review.udacity.com/#!/rubrics/3061/view).
+
+**The final implementation of the project showcases my abilities to build a backend API for an online store.**
 <br/><br/>
 
 ---
@@ -48,7 +64,6 @@ npm install
 ---
 ## START PROJECT
 
-
 ### _Build_:  
 ```bash
 npm run build
@@ -58,8 +73,25 @@ npm run build
 ```bash
 npm run start
 ```
+
+### _Watch_:  
+```bash
+npm run watch
+```
+
 Start server at http://localhost:3000
 
+<br/>
+
+---
+
+## POSTGRES DATABASE
+
+#### PORT 
+
+```bash
+5432
+```
 <br/>
 
 ---
@@ -91,10 +123,5 @@ npm run test
 ```
 <br/>
 
-
----
-# END POINTS
-* Index :  `http://localhost:3000`
-* Image Processing : `http://localhost:3000/api/images?filename=coffee_cup&width=250&height=200`
 
 <br/><br/>

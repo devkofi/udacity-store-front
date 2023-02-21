@@ -53,7 +53,7 @@ var Product = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT * FROM products';
+                        sql = "SELECT * FROM products";
                         return [4 /*yield*/, conn.query(sql)];
                     case 2:
                         result = _a.sent();
@@ -79,7 +79,7 @@ var Product = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT * FROM products WHERE id=($1)';
+                        sql = "SELECT * FROM products WHERE id=($1)";
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();
@@ -109,7 +109,7 @@ var Product = /** @class */ (function () {
                         return [4 /*yield*/, conn.query(sql, [product.name, product.price, product.category])];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, conn.query('SELECT * FROM products WHERE name=($1)', [product.name])];
+                        return [4 /*yield*/, conn.query("SELECT * FROM products WHERE name=($1)", [product.name])];
                     case 3:
                         output = _a.sent();
                         conn.end();
@@ -131,11 +131,16 @@ var Product = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         conn = (0, pgConnection_1.connection)();
-                        sql = 'UPDATE products SET name=($1), price=($2), category=($3) WHERE id=($4)';
+                        sql = "UPDATE products SET name=($1), price=($2), category=($3) WHERE id=($4)";
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, conn.query(sql, [product.name, product.price, product.category, id])];
+                        return [4 /*yield*/, conn.query(sql, [
+                                product.name,
+                                product.price,
+                                product.category,
+                                id,
+                            ])];
                     case 2:
                         result = _a.sent();
                         conn.end();
@@ -143,7 +148,7 @@ var Product = /** @class */ (function () {
                         return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_4 = _a.sent();
-                        throw new Error('Could not update product');
+                        throw new Error("Could not update product");
                     case 4: return [2 /*return*/];
                 }
             });
@@ -157,14 +162,14 @@ var Product = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
                         conn = (0, pgConnection_1.connection)();
-                        sql = 'DELETE FROM products WHERE id=($1)';
+                        sql = "DELETE FROM products WHERE id=($1)";
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, conn.query('SELECT * FROM products')];
+                        return [4 /*yield*/, conn.query("SELECT * FROM products")];
                     case 3:
                         output = _a.sent();
                         conn.end();

@@ -52,7 +52,7 @@ var Order = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT * FROM orders';
+                        sql = "SELECT * FROM orders";
                         return [4 /*yield*/, conn.query(sql)];
                     case 2:
                         result = _a.sent();
@@ -79,10 +79,15 @@ var Order = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, conn.query(sql, [order.product_id, order.product_quantity, order.user_id, order.order_status.toLowerCase()])];
+                        return [4 /*yield*/, conn.query(sql, [
+                                order.product_id,
+                                order.product_quantity,
+                                order.user_id,
+                                order.order_status.toLowerCase(),
+                            ])];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, conn.query('SELECT * FROM orders WHERE product_id=($1)', [order.product_id])];
+                        return [4 /*yield*/, conn.query("SELECT * FROM orders WHERE product_id=($1)", [order.product_id])];
                     case 3:
                         output = _a.sent();
                         conn.end();
@@ -107,7 +112,7 @@ var Order = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT * FROM orders WHERE id=($1)';
+                        sql = "SELECT * FROM orders WHERE id=($1)";
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();
@@ -133,11 +138,11 @@ var Order = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'DELETE FROM orders WHERE id=($1)';
+                        sql = "DELETE FROM orders WHERE id=($1)";
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, conn.query('SELECT * FROM orders')];
+                        return [4 /*yield*/, conn.query("SELECT * FROM orders")];
                     case 3:
                         output = _a.sent();
                         conn.end();

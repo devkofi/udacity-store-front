@@ -90,7 +90,7 @@ var verifyAuthToken = function (req, res, next) { return __awaiter(void 0, void 
     var _a;
     return __generator(this, function (_b) {
         try {
-            token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1];
+            token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
             if (!token) {
                 throw new Error();
             }
@@ -99,7 +99,7 @@ var verifyAuthToken = function (req, res, next) { return __awaiter(void 0, void 
             next();
         }
         catch (err) {
-            res.status(401).send('Please authenticate');
+            res.status(401).send("Please authenticate");
         }
         return [2 /*return*/];
     });

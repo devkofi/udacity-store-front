@@ -47,12 +47,14 @@ var user = new user_1.User();
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, user.signUp({
+            case 0: return [4 /*yield*/, user
+                    .signUp({
                     first_name: "Martha",
                     last_name: "Bupay",
                     email: "bupay@gmail.com",
-                    password: JASMINE_TEST_PASSWORD
-                }).then(function () {
+                    password: JASMINE_TEST_PASSWORD,
+                })
+                    .then(function () {
                     (function () { return __awaiter(void 0, void 0, void 0, function () {
                         return __generator(this, function (_a) {
                             switch (_a.label) {
@@ -60,7 +62,7 @@ var user = new user_1.User();
                                         first_name: "Dubampana",
                                         last_name: "Akete",
                                         email: "dubampana@gmail.com",
-                                        password: JASMINE_TEST_PASSWORD
+                                        password: JASMINE_TEST_PASSWORD,
                                     })];
                                 case 1: return [2 /*return*/, _a.sent()];
                             }
@@ -76,7 +78,7 @@ describe("USERS TEST", function () {
         it("should have an index method", function () {
             expect(user.index).toBeDefined();
         });
-        it('should have a show method', function () {
+        it("should have a show method", function () {
             expect(user.show).toBeDefined();
         });
         it("should have a signUp method", function () {
@@ -88,7 +90,7 @@ describe("USERS TEST", function () {
         it("should have an authenticate method", function () {
             expect(user.authenticate).toBeDefined();
         });
-        it('should have a delete method', function () {
+        it("should have a delete method", function () {
             expect(user.delete).toBeDefined();
         });
     });
@@ -105,7 +107,7 @@ describe("USERS TEST", function () {
                 }
             });
         }); });
-        it('signUp method should create a user', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("signUp method should create a user", function () { return __awaiter(void 0, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -113,7 +115,7 @@ describe("USERS TEST", function () {
                             first_name: "Kofi Nyarko",
                             last_name: "Kumi",
                             email: "someone@gmail.com",
-                            password: JASMINE_TEST_PASSWORD
+                            password: JASMINE_TEST_PASSWORD,
                         })];
                     case 1:
                         result = _a.sent();
@@ -122,13 +124,13 @@ describe("USERS TEST", function () {
                 }
             });
         }); });
-        it('signIn method should allow already existing user', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("signIn method should allow already existing user", function () { return __awaiter(void 0, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, user.signIn({
                             email: "someone@gmail.com",
-                            password: JASMINE_TEST_PASSWORD
+                            password: JASMINE_TEST_PASSWORD,
                         })];
                     case 1:
                         result = _a.sent();
@@ -137,7 +139,7 @@ describe("USERS TEST", function () {
                 }
             });
         }); });
-        it('show method should return the correct user', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("show method should return the correct user", function () { return __awaiter(void 0, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -149,7 +151,7 @@ describe("USERS TEST", function () {
                 }
             });
         }); });
-        it('delete method should remove the user', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("delete method should remove the user", function () { return __awaiter(void 0, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {

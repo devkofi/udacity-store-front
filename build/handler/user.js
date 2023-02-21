@@ -111,7 +111,7 @@ var signUp = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                     first_name: req.body.first_name,
                     last_name: req.body.last_name,
                     email: req.body.email,
-                    password: req.body.password
+                    password: req.body.password,
                 };
                 _a.label = 1;
             case 1:
@@ -159,8 +159,10 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, user.authenticate({ email: req.body.email, password: req.body.password }).then(function (item) {
-                        var token = jsonwebtoken_1.default.sign({ user: item }, TOKEN_SECRET, { algorithm: 'HS256' });
+                return [4 /*yield*/, user
+                        .authenticate({ email: req.body.email, password: req.body.password })
+                        .then(function (item) {
+                        var token = jsonwebtoken_1.default.sign({ user: item }, TOKEN_SECRET, { algorithm: "HS256" });
                         //console.log(token)
                         // res.cookie('token', token, {
                         //     httpOnly: true,
@@ -168,14 +170,14 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                         //     maxAge: (5000 * 60),
                         //     //signed: true
                         // });
-                        res.set('x-access-token', token);
+                        res.set("x-access-token", token);
                         // console.log(item);
                         if (bcrypt_1.default.compareSync(req.body.password + BCRYPT_PEPPER, item === null || item === void 0 ? void 0 : item.password)) {
                             res.status(200);
-                            res.send(res.get('x-access-token'));
+                            res.send(res.get("x-access-token"));
                         }
                         else {
-                            res.send('Could not connect');
+                            res.send("Could not connect");
                         }
                     })];
             case 1:
@@ -191,10 +193,10 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
     });
 }); };
 var user_routes = function (app) {
-    app.get('/users', auth_1.verifyAuthToken, index);
-    app.get('/users/:id', auth_1.verifyAuthToken, show);
-    app.post('/users/signup', signUp);
-    app.delete('/users', auth_1.verifyAuthToken, deleteUser);
-    app.post('/users/login', login);
+    app.get("/users", auth_1.verifyAuthToken, index);
+    app.get("/users/:id", auth_1.verifyAuthToken, show);
+    app.post("/users/signup", signUp);
+    app.delete("/users/:id", auth_1.verifyAuthToken, deleteUser);
+    app.post("/users/login", login);
 };
 exports.user_routes = user_routes;

@@ -70,7 +70,7 @@ var PopularProducts = /** @class */ (function (_super) {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT * FROM products LIMIT 5';
+                        sql = "SELECT * FROM products LIMIT 5";
                         return [4 /*yield*/, conn.query(sql)];
                     case 2:
                         result = _a.sent();

@@ -22,13 +22,13 @@ app.use((0, cors_1.default)());
 app.use(body_parser_1.default.urlencoded({ extended: false }));
 // parse application/json
 app.use(body_parser_1.default.json());
-app.get('/', function (req, res) {
+app.get("/", function (req, res) {
     res.sendFile(rootFolder + "login.html");
 });
-app.get('/users/login', function (req, res) {
+app.get("/users/login", function (req, res) {
     res.sendFile(rootFolder + "login.html");
 });
-app.get('/users/signup', function (req, res) {
+app.get("/users/signup", function (req, res) {
     res.sendFile(rootFolder + "signup.html");
 });
 (0, user_1.user_routes)(app);

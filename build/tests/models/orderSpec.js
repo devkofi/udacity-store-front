@@ -53,34 +53,38 @@ describe("ORDER TEST: ", function () {
         it("should have an index method", function () {
             expect(order.index).toBeDefined();
         });
-        it('should have a show method', function () {
+        it("should have a show method", function () {
             expect(order.show).toBeDefined();
         });
         it("should have a create method", function () {
             expect(order.create).toBeDefined();
         });
-        it('should have a deleteCurrentOrder method', function () {
+        it("should have a deleteCurrentOrder method", function () {
             expect(order.delete).toBeDefined();
         });
     });
     describe("Test Suite for Order Length of Array: ", function () {
-        it('create method should add an order', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("create method should add an order", function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, product.create({
+                    case 0: return [4 /*yield*/, product
+                            .create({
                             name: "Pineapple",
                             price: 20.5,
-                            category: "fruits"
-                        }).then(function () {
+                            category: "fruits",
+                        })
+                            .then(function () {
                             (function () { return __awaiter(void 0, void 0, void 0, function () {
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
-                                        case 0: return [4 /*yield*/, user.signUp({
+                                        case 0: return [4 /*yield*/, user
+                                                .signUp({
                                                 first_name: "Samuel",
                                                 last_name: "Atta",
                                                 email: "sammy@gmail.com",
-                                                password: JASMINE_TEST_PASSWORD
-                                            }).then(function () {
+                                                password: JASMINE_TEST_PASSWORD,
+                                            })
+                                                .then(function () {
                                                 (function () { return __awaiter(void 0, void 0, void 0, function () {
                                                     return __generator(this, function (_a) {
                                                         switch (_a.label) {
@@ -88,7 +92,7 @@ describe("ORDER TEST: ", function () {
                                                                     product_id: 1,
                                                                     product_quantity: 4,
                                                                     user_id: 1,
-                                                                    order_status: "complete"
+                                                                    order_status: "complete",
                                                                 })];
                                                             case 1: return [2 /*return*/, _a.sent()];
                                                         }
@@ -101,7 +105,7 @@ describe("ORDER TEST: ", function () {
                                                                     product_id: 1,
                                                                     product_quantity: 4,
                                                                     user_id: 1,
-                                                                    order_status: "complete"
+                                                                    order_status: "complete",
                                                                 })];
                                                             case 1: return [2 /*return*/, _a.sent()];
                                                         }
@@ -114,7 +118,7 @@ describe("ORDER TEST: ", function () {
                                                                     product_id: 1,
                                                                     product_quantity: 4,
                                                                     user_id: 1,
-                                                                    order_status: "complete"
+                                                                    order_status: "complete",
                                                                 })];
                                                             case 1: return [2 /*return*/, _a.sent()];
                                                         }
@@ -145,7 +149,7 @@ describe("ORDER TEST: ", function () {
                 }
             });
         }); });
-        it('show method should return the correct order', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("show method should return the correct order", function () { return __awaiter(void 0, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -157,7 +161,7 @@ describe("ORDER TEST: ", function () {
                 }
             });
         }); });
-        it('delete method should remove the order', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("delete method should remove the order", function () { return __awaiter(void 0, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {

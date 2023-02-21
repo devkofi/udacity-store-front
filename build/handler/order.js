@@ -63,7 +63,7 @@ var index = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
             case 2:
                 error_1 = _a.sent();
                 res.status(400);
-                res.json((error_1));
+                res.json(error_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -98,7 +98,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 product_id: req.body.product_id,
                 product_quantity: req.body.product_quantity,
                 user_id: req.body.user_id,
-                order_status: req.body.order_status
+                order_status: req.body.order_status,
             };
             order.create(new_order).then(function (item) {
                 res.json(item);
@@ -131,7 +131,9 @@ var completedOrders = function (req, res) { return __awaiter(void 0, void 0, voi
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, completedOrder.completed(req.params.user_id, req.params.order_status).then(function (item) {
+                return [4 /*yield*/, completedOrder
+                        .completed(req.params.user_id, req.params.order_status)
+                        .then(function (item) {
                         res.json(item);
                     })];
             case 1:
@@ -149,7 +151,7 @@ var completedOrders = function (req, res) { return __awaiter(void 0, void 0, voi
 var verifyAuthToken = function (req, res, next) {
     var token = req.cookies.token;
     try {
-        if (typeof token !== 'undefined') {
+        if (typeof token !== "undefined") {
             (function () { return __awaiter(void 0, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
@@ -173,10 +175,10 @@ var verifyAuthToken = function (req, res, next) {
     }
 };
 var order_routes = function (app) {
-    app.get('/orders', verifyAuthToken, index);
-    app.get('/orders/:id', verifyAuthToken, show);
-    app.get('/orders/:user_id/:order_status', completedOrders);
-    app.post('/orders', verifyAuthToken, create);
-    app.delete('/orders/:id', verifyAuthToken, deleteOrder);
+    app.get("/orders", verifyAuthToken, index);
+    app.get("/orders/:id", verifyAuthToken, show);
+    app.get("/orders/:user_id/:order_status", completedOrders);
+    app.post("/orders", verifyAuthToken, create);
+    app.delete("/orders/:id", verifyAuthToken, deleteOrder);
 };
 exports.default = order_routes;

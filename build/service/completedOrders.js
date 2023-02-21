@@ -70,8 +70,11 @@ var CompletedOrder = /** @class */ (function (_super) {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT * FROM orders WHERE user_id=($1) AND order_status=($2)';
-                        return [4 /*yield*/, conn.query(sql, [user_id, order_status.toLowerCase()])];
+                        sql = "SELECT * FROM orders WHERE user_id=($1) AND order_status=($2)";
+                        return [4 /*yield*/, conn.query(sql, [
+                                user_id,
+                                order_status.toLowerCase(),
+                            ])];
                     case 2:
                         result = _a.sent();
                         conn.end();

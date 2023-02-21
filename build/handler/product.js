@@ -76,7 +76,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
             new_product = {
                 name: req.body.name,
                 price: req.body.price,
-                category: req.body.category
+                category: req.body.category,
             };
             create_product.create(new_product).then(function (item) {
                 res.json(item);
@@ -92,7 +92,13 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
 var update = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         try {
-            create_product.update(req.params.id, { "name": req.body.name, "price": req.body.price, "category": req.body.category }).then(function (item) {
+            create_product
+                .update(req.params.id, {
+                name: req.body.name,
+                price: req.body.price,
+                category: req.body.category,
+            })
+                .then(function (item) {
                 res.json(item);
             });
         }
@@ -107,7 +113,7 @@ var deleteProduct = function (req, res) { return __awaiter(void 0, void 0, void 
     return __generator(this, function (_a) {
         try {
             create_product.delete(req.params.id).then(function () {
-                res.send('Successfully Deleted item');
+                res.send("Successfully Deleted item");
             });
         }
         catch (error) {
@@ -164,12 +170,12 @@ var productsByCategory = function (req, res) { return __awaiter(void 0, void 0, 
 //     }
 // }
 var product_routes = function (app) {
-    app.get('/products', index); //index
-    app.get('/products/popular', popularProduct);
-    app.get('/products/:category', productsByCategory);
-    app.post('/products', auth_1.verifyAuthToken, create); //create
-    app.get('/products/:id', show); //show
-    app.put('/products/update', auth_1.verifyAuthToken, update); //update
-    app.delete('/products/:id', auth_1.verifyAuthToken, deleteProduct); //delete
+    app.get("/products", index); //index
+    app.get("/products/popular", popularProduct);
+    app.get("/products/:category", productsByCategory);
+    app.post("/products", auth_1.verifyAuthToken, create); //create
+    app.get("/products/:id", show); //show
+    app.put("/products/update", auth_1.verifyAuthToken, update); //update
+    app.delete("/products/:id", auth_1.verifyAuthToken, deleteProduct); //delete
 };
 exports.default = product_routes;

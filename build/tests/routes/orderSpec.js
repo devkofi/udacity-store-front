@@ -59,18 +59,21 @@ describe("ORDER ENPOINT TEST", function () {
                     var _this = this;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0: return [4 /*yield*/, user.signIn({
+                            case 0: return [4 /*yield*/, user
+                                    .signIn({
                                     email: "someone@gmail.com",
-                                    password: JASMINE_TEST_PASSWORD
-                                }).then(function () { return __awaiter(_this, void 0, void 0, function () {
+                                    password: JASMINE_TEST_PASSWORD,
+                                })
+                                    .then(function () { return __awaiter(_this, void 0, void 0, function () {
                                     var _this = this;
                                     return __generator(this, function (_a) {
                                         switch (_a.label) {
-                                            case 0: return [4 /*yield*/, order.create({
+                                            case 0: return [4 /*yield*/, order
+                                                    .create({
                                                     product_id: 2,
                                                     product_quantity: 4,
                                                     user_id: 2,
-                                                    order_status: "complete"
+                                                    order_status: "complete",
                                                 })
                                                     .then(function () { return __awaiter(_this, void 0, void 0, function () {
                                                     return __generator(this, function (_a) {
@@ -79,7 +82,7 @@ describe("ORDER ENPOINT TEST", function () {
                                                                     product_id: 2,
                                                                     product_quantity: 5,
                                                                     user_id: 2,
-                                                                    order_status: "complete"
+                                                                    order_status: "complete",
                                                                 })];
                                                             case 1:
                                                                 _a.sent();
@@ -119,10 +122,12 @@ describe("ORDER ENPOINT TEST", function () {
                     var _this = this;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0: return [4 /*yield*/, user.signIn({
+                            case 0: return [4 /*yield*/, user
+                                    .signIn({
                                     email: "someone@gmail.com",
-                                    password: JASMINE_TEST_PASSWORD
-                                }).then(function () { return __awaiter(_this, void 0, void 0, function () {
+                                    password: JASMINE_TEST_PASSWORD,
+                                })
+                                    .then(function () { return __awaiter(_this, void 0, void 0, function () {
                                     var response;
                                     return __generator(this, function (_a) {
                                         switch (_a.label) {

@@ -60,7 +60,7 @@ var User = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT * FROM users';
+                        sql = "SELECT * FROM users";
                         return [4 /*yield*/, conn.query(sql)];
                     case 2:
                         result = _a.sent();
@@ -81,7 +81,7 @@ var User = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT * FROM users WHERE id=($1)';
+                        sql = "SELECT * FROM users WHERE id=($1)";
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();
@@ -103,14 +103,21 @@ var User = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'INSERT INTO users(first_name, last_name, email, password) VALUES ($1, $2, $3, $4)';
+                        sql = "INSERT INTO users(first_name, last_name, email, password) VALUES ($1, $2, $3, $4)";
                         return [4 /*yield*/, bcrypt_1.default.hash(signUp.password + this.pepper, parseInt(this.salt))];
                     case 2:
                         hash = _a.sent();
-                        return [4 /*yield*/, conn.query(sql, [signUp.first_name, signUp.last_name, signUp.email, hash])];
+                        return [4 /*yield*/, conn.query(sql, [
+                                signUp.first_name,
+                                signUp.last_name,
+                                signUp.email,
+                                hash,
+                            ])];
                     case 3:
                         _a.sent();
-                        return [4 /*yield*/, conn.query('SELECT * FROM users WHERE email=($1)', [signUp.email])];
+                        return [4 /*yield*/, conn.query("SELECT * FROM users WHERE email=($1)", [
+                                signUp.email,
+                            ])];
                     case 4:
                         output = _a.sent();
                         conn.end();
@@ -135,7 +142,7 @@ var User = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT email, password FROM users WHERE email=($1) AND password=($2)';
+                        sql = "SELECT email, password FROM users WHERE email=($1) AND password=($2)";
                         return [4 /*yield*/, conn.query(sql, [signIn.email, signIn.password])];
                     case 2:
                         result = _a.sent();
@@ -160,11 +167,11 @@ var User = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'DELETE FROM users WHERE id=($1)';
+                        sql = "DELETE FROM users WHERE id=($1)";
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, conn.query('SELECT * FROM users')];
+                        return [4 /*yield*/, conn.query("SELECT * FROM users")];
                     case 3:
                         output = _a.sent();
                         conn.end();
@@ -184,7 +191,7 @@ var User = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        sql = 'SELECT email,password from users WHERE email=($1)';
+                        sql = "SELECT email,password from users WHERE email=($1)";
                         return [4 /*yield*/, conn.query(sql, [auth.email])];
                     case 2:
                         result = _a.sent();

@@ -41,10 +41,11 @@ var product = new product_1.Product();
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, product.create({
+            case 0: return [4 /*yield*/, product
+                    .create({
                     name: "Apple",
                     price: 10.0,
-                    category: "fruits"
+                    category: "fruits",
                 })
                     .then(function () {
                     (function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -53,7 +54,7 @@ var product = new product_1.Product();
                                 case 0: return [4 /*yield*/, product.create({
                                         name: "Banana",
                                         price: 15.3,
-                                        category: "fruits"
+                                        category: "fruits",
                                     })];
                                 case 1: return [2 /*return*/, _a.sent()];
                             }
@@ -67,7 +68,7 @@ var product = new product_1.Product();
                                 case 0: return [4 /*yield*/, product.create({
                                         name: "Pear",
                                         price: 5.9,
-                                        category: "fruits"
+                                        category: "fruits",
                                     })];
                                 case 1: return [2 /*return*/, _a.sent()];
                             }
@@ -81,7 +82,7 @@ var product = new product_1.Product();
                                 case 0: return [4 /*yield*/, product.create({
                                         name: "Guava",
                                         price: 25.9,
-                                        category: "fruits"
+                                        category: "fruits",
                                     })];
                                 case 1: return [2 /*return*/, _a.sent()];
                             }
@@ -95,7 +96,7 @@ var product = new product_1.Product();
                                 case 0: return [4 /*yield*/, product.create({
                                         name: "Mango",
                                         price: 5.9,
-                                        category: "fruits"
+                                        category: "fruits",
                                     })];
                                 case 1: return [2 /*return*/, _a.sent()];
                             }
@@ -114,22 +115,22 @@ describe("PRODUCT TEST: ", function () {
         it("should have a create method", function () {
             expect(product.create).toBeDefined();
         });
-        it('should have a delete method', function () {
+        it("should have a delete method", function () {
             expect(product.delete).toBeDefined();
         });
-        it('should have a show method', function () {
+        it("should have a show method", function () {
             expect(product.show).toBeDefined();
         });
     });
     describe("Test Suite for Product Length of Array: ", function () {
-        it('create method should create a product', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("create method should create a product", function () { return __awaiter(void 0, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, product.create({
                             name: "Pineapple",
                             price: 20.5,
-                            category: "fruits"
+                            category: "fruits",
                         })];
                     case 1:
                         result = _a.sent();
@@ -150,7 +151,7 @@ describe("PRODUCT TEST: ", function () {
                 }
             });
         }); });
-        it('show method should return the correct product', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("show method should return the correct product", function () { return __awaiter(void 0, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -162,7 +163,7 @@ describe("PRODUCT TEST: ", function () {
                 }
             });
         }); });
-        it('delete method should remove the product', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it("delete method should remove the product", function () { return __awaiter(void 0, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
