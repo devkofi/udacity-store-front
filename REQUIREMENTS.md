@@ -31,12 +31,64 @@ These are the notes from a meeting with the frontend developer that describe wha
 - id
 - firstName
 - lastName
+- email
 - password
 
 #### Orders
 - id
-- id of each product in the order
-- quantity of each product in the order
+- product_id
+- product_quantity
 - user_id
-- status of order (active or complete)
+- order_status (active or complete)
 
+<br/>
+
+---
+# END POINTS
+
+## USER ENDPOINT
+#### _Get Request_
+* Index :  `http://localhost:3000/users`
+* Show _(Authentication Required)_ : `http://localhost:3000/users/:id`
+
+#### _Post Request_
+* Sign Up :  `http://localhost:3000/users/signup`
+* Login :  `http://localhost:3000/users/login`
+
+#### _Delete Request_
+* Delete _(Authentication Required)_:  `http://localhost:3000/users/:id`
+
+<br/>
+
+## PRODUCT ENDPOINT
+#### _Get Request_
+* Index :  `http://localhost:3000/products`
+* Show :  `http://localhost:3000/products/:id`
+* Popular Products : `http://localhost:3000/products/popular`
+* Products By Category : `http://localhost:3000/products/:category`
+
+#### _Post Request_
+* Create _(Authentication Required)_  :  `http://localhost:3000/products/`
+
+#### _Put Request_
+* Update _(Authentication Required)_  :  `http://localhost:3000/products/update`
+
+
+#### _Delete Request_
+* Delete _(Authentication Required)_ :  `http://localhost:3000/products/:id`
+
+<br/>
+
+## ORDER ENDPOINT
+
+#### _Get Request_
+* Index _(Authentication Required)_ :  `http://localhost:3000/orders`
+* Show _(Authentication Required)_ :  `http://localhost:3000/orders/:id`
+* Completed Orders _(Authentication Required)_ :  `http://localhost:3000/:user_id/:order_status`
+    
+#### _Post Request_
+* Create _(Authentication Required)_ :  `http://localhost:3000/orders`
+
+#### _Delete Request_
+* Delete _(Authentication Required)_ :  `http://localhost:3000/orders/:id`
+  
