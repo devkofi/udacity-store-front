@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.PopularProducts = void 0;
 var pgConnection_1 = require("../handler/pgConnection");
 var PopularProducts = /** @class */ (function () {
@@ -52,7 +52,9 @@ var PopularProducts = /** @class */ (function () {
                         return [4 /*yield*/, conn.connect()];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, conn.query('SELECT * FROM products LIMIT ($1)', [limit])];
+                        return [4 /*yield*/, conn.query("SELECT * FROM products LIMIT ($1)", [
+                                limit,
+                            ])];
                     case 2:
                         result = _a.sent();
                         conn.end();

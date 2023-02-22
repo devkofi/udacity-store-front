@@ -185,7 +185,9 @@ var productsByCategory = function (req, res) { return __awaiter(void 0, void 0, 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, new productsByCategory_1.ProductsByCategory().showCategory(req.params.category).then(function (item) {
+                return [4 /*yield*/, new productsByCategory_1.ProductsByCategory()
+                        .showCategory(req.params.category)
+                        .then(function (item) {
                         res.json(item);
                     })];
             case 1:

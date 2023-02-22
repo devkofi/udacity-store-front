@@ -3,7 +3,6 @@ import { Order, OrderType } from "../models/order";
 import { CompletedOrder } from "../service/completedOrders";
 import { verifyAuthToken } from "../middleware/auth";
 
-
 const order = new Order();
 const completedOrder = new CompletedOrder();
 

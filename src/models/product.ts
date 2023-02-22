@@ -28,7 +28,7 @@ export class Product {
 
   async show(id: string): Promise<ProductType[]> {
     // try {
-      
+
     // } catch (err) {
     //   throw new Error(`Could not find product ${id}. Error: ${err}`);
     // }

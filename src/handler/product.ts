@@ -76,30 +76,30 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> => {
 
 const popularProduct = async (req: Request, res: Response): Promise<void> => {
   try {
-    await popular_product.showPopular(req.params.limit).then((item)=>{
-      res.json(item)
-    });
-  } catch (error) {
-    res.status(400);
-    res.json(error as unknown as string);
-  }
-  
-}
-
-const productsByCategory = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
-  try {
-    await new ProductsByCategory().showCategory(req.params.category).then((item) => {
+    await popular_product.showPopular(req.params.limit).then((item) => {
       res.json(item);
     });
   } catch (error) {
     res.status(400);
     res.json(error as unknown as string);
   }
-}
+};
 
+const productsByCategory = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    await new ProductsByCategory()
+      .showCategory(req.params.category)
+      .then((item) => {
+        res.json(item);
+      });
+  } catch (error) {
+    res.status(400);
+    res.json(error as unknown as string);
+  }
+};
 
 // const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
 //     const token = req.cookies.token;
@@ -131,6 +131,6 @@ const product_routes = (app: express.Application): void => {
   app.post("/products", verifyAuthToken, create); //create
   app.put("/products/update", verifyAuthToken, update); //update
   app.delete("/products/:id", verifyAuthToken, deleteProduct); //delete
-}
+};
 
 export default product_routes;

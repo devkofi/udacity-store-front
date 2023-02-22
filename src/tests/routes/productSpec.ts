@@ -9,11 +9,9 @@ const request = supertest(app);
 
 const product = new Product();
 
-
-
 describe("PRODUCT ENDPOINT TEST", () => {
   describe("Test Product Endpoint Responses", function () {
-    beforeAll(function() {
+    beforeAll(function () {
       async () => {
         await product.create({
           name: "Pineapple",
