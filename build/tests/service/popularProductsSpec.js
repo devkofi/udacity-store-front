@@ -41,14 +41,14 @@ var popularProducts = new popularProducts_1.PopularProducts();
 describe("POPULAR PRODUCT SERVICE TEST", function () {
     describe("Test Suite for Popular Products Service: ", function () {
         it("should have a show method", function () {
-            expect(popularProducts.show).toBeDefined();
+            expect(popularProducts.showPopular).toBeDefined();
         });
     });
     describe("Test Suite for Length of Array: ", function () {
         it("popularProducts returns an array of the Popular Products", function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, popularProducts.showPopular().then(function (item) {
+                    case 0: return [4 /*yield*/, popularProducts.showPopular("5").then(function (item) {
                             expect(item.length).toBeGreaterThanOrEqual(0);
                         })];
                     case 1:

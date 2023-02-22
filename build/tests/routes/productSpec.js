@@ -46,52 +46,31 @@ var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 var request = (0, supertest_1.default)(server_1.default);
 var product = new product_1.Product();
-(function () { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, product.create({
-                    name: "Pineapple",
-                    price: 20.5,
-                    category: "fruits",
-                })];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
 describe("PRODUCT ENDPOINT TEST", function () {
     describe("Test Product Endpoint Responses", function () {
         var _this = this;
+        beforeAll(function () {
+            var _this = this;
+            (function () { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, product.create({
+                                name: "Pineapple",
+                                price: 20.5,
+                                category: "fruits",
+                            })];
+                        case 1:
+                            _a.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            }); });
+        });
         it("get index endpoint", function () { return __awaiter(_this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, request.get("/products")];
-                    case 1:
-                        response = _a.sent();
-                        expect(response.status).toBe(200);
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-        it("get popular product endpoint", function () { return __awaiter(_this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, request.get("/products/popular")];
-                    case 1:
-                        response = _a.sent();
-                        expect(response.status).toBe(200);
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-        it("get product by category", function () { return __awaiter(_this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, request.get("/products/fruits")];
                     case 1:
                         response = _a.sent();
                         expect(response.status).toBe(200);
@@ -118,7 +97,7 @@ describe("PRODUCT ENDPOINT TEST", function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, request.get("/products/popular")];
+                    case 0: return [4 /*yield*/, request.get("/products/popular/5")];
                     case 1:
                         response = _a.sent();
                         expect(response.status).toBe(200);
@@ -130,7 +109,7 @@ describe("PRODUCT ENDPOINT TEST", function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, request.get("/products/fruits")];
+                    case 0: return [4 /*yield*/, request.get("/products/category/fruits")];
                     case 1:
                         response = _a.sent();
                         expect(response.status).toBe(200);
