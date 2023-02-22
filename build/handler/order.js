@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var order_1 = require("../models/order");
 var completedOrders_1 = require("../service/completedOrders");
 var auth_1 = require("../middleware/auth");
@@ -92,7 +92,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 product_id: req.body.product_id,
                 product_quantity: req.body.product_quantity,
                 user_id: req.body.user_id,
-                order_status: req.body.order_status
+                order_status: req.body.order_status,
             };
             order.create(new_order).then(function (item) {
                 res.json(item);
@@ -108,7 +108,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
 var deleteOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         try {
-            order["delete"](req.params.id).then(function (item) {
+            order.delete(req.params.id).then(function (item) {
                 res.json(item);
             });
         }
@@ -164,6 +164,6 @@ var order_routes = function (app) {
     app.get("/orders/:id", auth_1.verifyAuthToken, show);
     app.get("/orders/:user_id/:order_status", completedOrders);
     app.post("/orders", auth_1.verifyAuthToken, create);
-    app["delete"]("/orders/:id", auth_1.verifyAuthToken, deleteOrder);
+    app.delete("/orders/:id", auth_1.verifyAuthToken, deleteOrder);
 };
-exports["default"] = order_routes;
+exports.default = order_routes;
