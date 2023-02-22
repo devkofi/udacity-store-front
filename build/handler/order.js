@@ -38,12 +38,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var order_1 = require("../models/order");
 var completedOrders_1 = require("../service/completedOrders");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+dotenv_1["default"].config();
 var TOKEN_SECRET = process.env.TOKEN_SECRET;
 var order = new order_1.Order();
 var completedOrder = new completedOrders_1.CompletedOrder();
@@ -98,7 +98,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 product_id: req.body.product_id,
                 product_quantity: req.body.product_quantity,
                 user_id: req.body.user_id,
-                order_status: req.body.order_status,
+                order_status: req.body.order_status
             };
             order.create(new_order).then(function (item) {
                 res.json(item);
@@ -114,7 +114,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
 var deleteOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         try {
-            order.delete(req.params.id).then(function (item) {
+            order["delete"](req.params.id).then(function (item) {
                 res.json(item);
             });
         }
@@ -155,7 +155,7 @@ var verifyAuthToken = function (req, res, next) {
             (function () { return __awaiter(void 0, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, jsonwebtoken_1.default.verify(token, TOKEN_SECRET)];
+                        case 0: return [4 /*yield*/, jsonwebtoken_1["default"].verify(token, TOKEN_SECRET)];
                         case 1:
                             _a.sent();
                             return [2 /*return*/];
@@ -179,6 +179,6 @@ var order_routes = function (app) {
     app.get("/orders/:id", verifyAuthToken, show);
     app.get("/orders/:user_id/:order_status", completedOrders);
     app.post("/orders", verifyAuthToken, create);
-    app.delete("/orders/:id", verifyAuthToken, deleteOrder);
+    app["delete"]("/orders/:id", verifyAuthToken, deleteOrder);
 };
-exports.default = order_routes;
+exports["default"] = order_routes;
