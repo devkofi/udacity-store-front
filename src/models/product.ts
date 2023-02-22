@@ -27,17 +27,19 @@ export class Product {
   }
 
   async show(id: string): Promise<ProductType[]> {
-    try {
-      const conn = connection();
-      await conn.connect();
-      const sql = "SELECT * FROM products WHERE id=($1)";
-      const result = await conn.query(sql, [id]);
-      conn.end();
-      //console.log(result.rows)
-      return result.rows;
-    } catch (err) {
-      throw new Error(`Could not find product ${id}. Error: ${err}`);
-    }
+    // try {
+      
+    // } catch (err) {
+    //   throw new Error(`Could not find product ${id}. Error: ${err}`);
+    // }
+
+    const conn = connection();
+    await conn.connect();
+    const sql = "SELECT * FROM products WHERE id=($1)";
+    const result = await conn.query(sql, [id]);
+    conn.end();
+    //console.log(result.rows)
+    return result.rows;
   }
 
   async create(product: ProductType): Promise<ProductType[]> {
