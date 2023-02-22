@@ -86,6 +86,12 @@ Start server at http://localhost:3000
 ---
 
 ## POSTGRES DATABASE
+#### DATABASES 
+
+```bash
+storedb
+testdb
+```
 
 #### PORT 
 
