@@ -86,6 +86,10 @@ JASMINE_TEST_PASSWORD=
 ---
 
 ## POSTGRES DATABASE SETUP
+
+#### INSTALL POSTGRES
+Download at https://www.postgresql.org/download/windows/
+
 #### CREATE DATABASES 
 
 * `storedb`
