@@ -1,11 +1,8 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { Order, OrderType } from "../models/order";
 import { CompletedOrder } from "../service/completedOrders";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+import { verifyAuthToken } from "../middleware/auth";
 
-dotenv.config();
-const { TOKEN_SECRET } = process.env;
 
 const order = new Order();
 const completedOrder = new CompletedOrder();
@@ -75,24 +72,24 @@ const completedOrders = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.cookies.token;
+// const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
+//   const token = req.cookies.token;
 
-  try {
-    if (typeof token !== "undefined") {
-      async () => {
-        await jwt.verify(token, TOKEN_SECRET as unknown as string);
-      };
-      next();
-    } else {
-      res.redirect("/login");
-    }
-  } catch (error) {
-    console.log(error);
-    res.clearCookie("token");
-    res.redirect("/login");
-  }
-};
+//   try {
+//     if (typeof token !== "undefined") {
+//       async () => {
+//         await jwt.verify(token, TOKEN_SECRET as unknown as string);
+//       };
+//       next();
+//     } else {
+//       res.redirect("/login");
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     res.clearCookie("token");
+//     res.redirect("/login");
+//   }
+// };
 
 const order_routes = (app: express.Application): void => {
   app.get("/orders", verifyAuthToken, index);
