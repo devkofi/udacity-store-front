@@ -64,8 +64,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### _Get Request_
 * Index :  `http://localhost:3000/products`
 * Show :  `http://localhost:3000/products/:id`
-* Popular Products : `http://localhost:3000/products/popular`
-* Products By Category : `http://localhost:3000/products/:category`
+* Popular Products : `http://localhost:3000/products/popular/:limit`
+* Products By Category : `http://localhost:3000/products/category/:category`
 
 #### _Post Request_
 * Create _(Authentication Required)_  :  `http://localhost:3000/products/`
