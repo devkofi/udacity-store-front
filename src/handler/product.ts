@@ -75,9 +75,15 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> => {
 };
 
 const popularProduct = async (req: Request, res: Response): Promise<void> => {
-  popular_product.showPopular(req.params.limit).then((item)=>{
-    res.json(item)
-  });
+  try {
+    await popular_product.showPopular(req.params.limit).then((item)=>{
+      res.json(item)
+    });
+  } catch (error) {
+    res.status(400);
+    res.json(error as unknown as string);
+  }
+  
 }
 
 const productsByCategory = async (
