@@ -97,8 +97,6 @@ Start server at http://localhost:3000
 ---
 # FORMATTING
 
-<br/>
-
 ### _Run Linter_:  
 ```bash
 npm run lint
@@ -115,13 +113,22 @@ npm run prettier
 
 # TESTING
 
-<br/>
-
 ### _Jasmine_:  
 ```bash
 npm run test
 ```
 <br/>
 
+---
 
+# ENVIRONMENT
+
+#### _Production_:  
+```bash
+ENV=dev
+```
+#### _Test_:  
+```bash
+ENV=test
+```
 <br/><br/>
