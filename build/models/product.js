@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 var pgConnection_1 = require("../handler/pgConnection");
 var Product = /** @class */ (function () {
@@ -70,11 +70,10 @@ var Product = /** @class */ (function () {
     };
     Product.prototype.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, err_2;
+            var conn, sql, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
                         conn = (0, pgConnection_1.connection)();
                         return [4 /*yield*/, conn.connect()];
                     case 1:
@@ -86,17 +85,13 @@ var Product = /** @class */ (function () {
                         conn.end();
                         //console.log(result.rows)
                         return [2 /*return*/, result.rows];
-                    case 3:
-                        err_2 = _a.sent();
-                        throw new Error("Could not find product ".concat(id, ". Error: ").concat(err_2));
-                    case 4: return [2 /*return*/];
                 }
             });
         });
     };
     Product.prototype.create = function (product) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, output, err_3;
+            var sql, conn, output, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -116,8 +111,8 @@ var Product = /** @class */ (function () {
                         //console.log(output.rows);
                         return [2 /*return*/, output.rows];
                     case 4:
-                        err_3 = _a.sent();
-                        throw new Error("Could not add new product ".concat(product.name, ". Error: ").concat(err_3));
+                        err_2 = _a.sent();
+                        throw new Error("Could not add new product ".concat(product.name, ". Error: ").concat(err_2));
                     case 5: return [2 /*return*/];
                 }
             });
@@ -125,7 +120,7 @@ var Product = /** @class */ (function () {
     };
     Product.prototype.update = function (id, product) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, err_4;
+            var conn, sql, result, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -147,16 +142,16 @@ var Product = /** @class */ (function () {
                         //console.log(result.rows[0]);
                         return [2 /*return*/, result.rows[0]];
                     case 3:
-                        err_4 = _a.sent();
+                        err_3 = _a.sent();
                         throw new Error("Could not update product");
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    Product.prototype["delete"] = function (id) {
+    Product.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, output, err_5;
+            var conn, sql, output, err_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -176,8 +171,8 @@ var Product = /** @class */ (function () {
                         //console.log(output.rows)
                         return [2 /*return*/, output.rows];
                     case 4:
-                        err_5 = _a.sent();
-                        throw new Error("Could not delete product ".concat(id, ". Error: ").concat(err_5));
+                        err_4 = _a.sent();
+                        throw new Error("Could not delete product ".concat(id, ". Error: ").concat(err_4));
                     case 5: return [2 /*return*/];
                 }
             });

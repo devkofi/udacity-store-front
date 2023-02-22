@@ -38,12 +38,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyAuthToken = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var dotenv_1 = __importDefault(require("dotenv"));
 //import { HEADER } from "../handler/user";
-dotenv_1["default"].config();
+dotenv_1.default.config();
 var TOKEN_SECRET = process.env.TOKEN_SECRET;
 // const verifyCookieAuthToken = (req: Request, res: Response, next: NextFunction) =>{
 //     const token = req.cookies.token;
@@ -94,7 +94,7 @@ var verifyAuthToken = function (req, res, next) { return __awaiter(void 0, void 
             if (!token) {
                 throw new Error();
             }
-            decoded = jsonwebtoken_1["default"].verify(token, String(TOKEN_SECRET));
+            decoded = jsonwebtoken_1.default.verify(token, String(TOKEN_SECRET));
             req.token = decoded;
             next();
         }

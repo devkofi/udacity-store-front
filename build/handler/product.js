@@ -35,120 +35,156 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var product_1 = require("../models/product");
 var popularProducts_1 = require("../service/popularProducts");
 var productsByCategory_1 = require("../service/productsByCategory");
 var auth_1 = require("../middleware/auth");
 var create_product = new product_1.Product();
+var popular_product = new popularProducts_1.PopularProducts();
 var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var error_1;
     return __generator(this, function (_a) {
-        try {
-            create_product.index().then(function (item) {
-                res.json(item);
-            });
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, create_product.index().then(function (item) {
+                        res.json(item);
+                    })];
+            case 1:
+                _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _a.sent();
+                res.status(400);
+                res.json(error_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
-        catch (error) {
-            res.status(400);
-            res.json(error);
-        }
-        return [2 /*return*/];
     });
 }); };
 var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var error_2;
     return __generator(this, function (_a) {
-        try {
-            create_product.show(req.params.id).then(function (item) {
-                res.json(item);
-            });
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, create_product.show(req.params.id).then(function (item) {
+                        res.json(item);
+                    })];
+            case 1:
+                _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _a.sent();
+                res.status(400);
+                res.json(error_2);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
-        catch (error) {
-            res.status(400);
-            res.json(error);
-        }
-        return [2 /*return*/];
     });
 }); };
 var create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var new_product;
+    var new_product, error_3;
     return __generator(this, function (_a) {
-        try {
-            new_product = {
-                name: req.body.name,
-                price: req.body.price,
-                category: req.body.category
-            };
-            create_product.create(new_product).then(function (item) {
-                res.json(item);
-            });
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                new_product = {
+                    name: req.body.name,
+                    price: req.body.price,
+                    category: req.body.category,
+                };
+                return [4 /*yield*/, create_product.create(new_product).then(function (item) {
+                        res.json(item);
+                    })];
+            case 1:
+                _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _a.sent();
+                res.status(400);
+                res.json(error_3);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
-        catch (error) {
-            res.status(400);
-            res.json(error);
-        }
-        return [2 /*return*/];
     });
 }); };
 var update = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var error_4;
     return __generator(this, function (_a) {
-        try {
-            create_product
-                .update(req.params.id, {
-                name: req.body.name,
-                price: req.body.price,
-                category: req.body.category
-            })
-                .then(function (item) {
-                res.json(item);
-            });
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, create_product
+                        .update(req.params.id, {
+                        name: req.body.name,
+                        price: req.body.price,
+                        category: req.body.category,
+                    })
+                        .then(function (item) {
+                        res.json(item);
+                    })];
+            case 1:
+                _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_4 = _a.sent();
+                res.status(400);
+                res.json(error_4);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
-        catch (error) {
-            res.status(400);
-            res.json(error);
-        }
-        return [2 /*return*/];
     });
 }); };
 var deleteProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var error_5;
     return __generator(this, function (_a) {
-        try {
-            create_product["delete"](req.params.id).then(function () {
-                res.send("Successfully Deleted item");
-            });
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, create_product.delete(req.params.id).then(function () {
+                        res.send("Successfully Deleted item");
+                    })];
+            case 1:
+                _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_5 = _a.sent();
+                res.status(400);
+                res.json(error_5);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
-        catch (error) {
-            res.status(400);
-            res.json(error);
-        }
-        return [2 /*return*/];
     });
 }); };
 var popularProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        try {
-            new popularProducts_1.PopularProducts().showPopular().then(function (item) {
-                res.json(item);
-            });
-        }
-        catch (error) {
-            res.status(400);
-            res.json(error);
-        }
+        popular_product.showPopular(req.params.limit).then(function (item) {
+            res.json(item);
+        });
         return [2 /*return*/];
     });
 }); };
 var productsByCategory = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var error_6;
     return __generator(this, function (_a) {
-        try {
-            new productsByCategory_1.ProductsByCategory().showCategory(req.params.category).then(function (item) {
-                res.json(item);
-            });
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, new productsByCategory_1.ProductsByCategory().showCategory(req.params.category).then(function (item) {
+                        res.json(item);
+                    })];
+            case 1:
+                _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                error_6 = _a.sent();
+                res.status(400);
+                res.json(error_6);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
-        catch (error) {
-            res.status(400);
-            res.json(error);
-        }
-        return [2 /*return*/];
     });
 }); };
 // const verifyAuthToken = (req: Request, res: Response, next: NextFunction) =>{
@@ -171,11 +207,11 @@ var productsByCategory = function (req, res) { return __awaiter(void 0, void 0, 
 // }
 var product_routes = function (app) {
     app.get("/products", index); //index
-    app.get("/products/popular", popularProduct);
-    app.get("/products/:category", productsByCategory);
-    app.post("/products", auth_1.verifyAuthToken, create); //create
     app.get("/products/:id", show); //show
+    app.get("/products/popular/:limit", popularProduct);
+    app.get("/products/category/:category", productsByCategory);
+    app.post("/products", auth_1.verifyAuthToken, create); //create
     app.put("/products/update", auth_1.verifyAuthToken, update); //update
-    app["delete"]("/products/:id", auth_1.verifyAuthToken, deleteProduct); //delete
+    app.delete("/products/:id", auth_1.verifyAuthToken, deleteProduct); //delete
 };
-exports["default"] = product_routes;
+exports.default = product_routes;
