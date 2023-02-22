@@ -62,6 +62,48 @@ npm install
 <br/>
 
 ---
+
+## SET ENVIRONMENT VARIABLES
+
+* Convert `.env-example` to `.env`
+* Set the following environment variables
+<br/>
+
+```bash
+POSTGRES_HOST=
+POSTGRES_PORT=
+POSTGRES_DB=
+POSTGRES_TEST_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+BCRYPT_PEPPER=
+SALT_ROUNDS=
+TOKEN_SECRET=
+JASMINE_TEST_PASSWORD=
+```
+<br/>
+
+---
+
+## POSTGRES DATABASE SETUP
+#### CREATE DATABASES 
+
+* `storedb`
+* `testdb` for unit testing
+
+#### DATABASE PORT 
+
+```bash
+5432
+```
+#### CREATE DATABASE MIGRATION 
+
+```bash
+npm run migrate-up
+```
+<br/>
+
+---
 ## START PROJECT
 
 ### _Build_:  
@@ -85,22 +127,7 @@ Start server at http://localhost:3000
 
 ---
 
-## POSTGRES DATABASE
-#### DATABASES 
 
-```bash
-storedb
-testdb
-```
-
-#### PORT 
-
-```bash
-5432
-```
-<br/>
-
----
 # FORMATTING
 
 ### _Run Linter_:  
@@ -121,6 +148,7 @@ npm run prettier
 
 ### _Jasmine_:  
 ```bash
+npm install -g jasmine
 npm run test
 ```
 <br/>
