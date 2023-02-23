@@ -1,0 +1,22 @@
+CREATE DATABASE storefront_db;
+CREATE DATABASE storefront_test_db;
+
+===========
+CREATE ROLE
+===========
+
+CREATE USER full_stack_user WITH PASSWORD 'password123';
+
+CREATE ROLE full_stack_user SUPERUSER LOGIN PASSWORD 'password123';
+
+GRANT ALL PRIVILEGES ON DATABASE storefront_db TO full_stack_user;
+GRANT ALL PRIVILEGES ON DATABASE storefront_test_db TO full_stack_user;
+GRANT ALL ON SCHEMA public TO full_stack_user;
+
+===========
+DELETE ROLE
+===========
+
+REASSIGN OWNED BY full_stack_user TO postgres;
+DROP OWNED BY full_stack_user;
+DROP USER full_stack_user;
