@@ -70,15 +70,34 @@ npm install
 <br/>
 
 ```bash
+#Your Postgres host IP eg. 127.0.0.1
 POSTGRES_HOST=
+
+#Your postgres port. Default port is 5432
 POSTGRES_PORT=
+
+#Your postgres database name
 POSTGRES_DB=
+
+#Your postgres database name for unit testing
 POSTGRES_TEST_DB=
+
+#Your postgres username. Follow the steps on POSTGRES DATABASE SETUP
 POSTGRES_USER=
+
+#Your postgres password. Follow the steps on POSTGRES DATABASE SETUP
 POSTGRES_PASSWORD=
+
+#For BCRYPT encryption
 BCRYPT_PEPPER=
+
+#For BCRYPT encryption
 SALT_ROUNDS=
+
+#For jwt tokens
 TOKEN_SECRET=
+
+#For unit testing
 JASMINE_TEST_PASSWORD=
 ```
 <br/>
@@ -90,20 +109,60 @@ JASMINE_TEST_PASSWORD=
 #### INSTALL POSTGRES
 Download at https://www.postgresql.org/download/windows/
 
-#### CREATE DATABASES 
-
-* `storedb`
-* `testdb` for unit testing
-
 #### DATABASE PORT 
 
 ```bash
 5432
 ```
+#### DATABASE SETUP 
+* Connect to Database
+
+`Linux`
+```bash
+#Switch to the postgres user
+su postgres
+
+#Start psql
+psql postgres
+```
+
+`Windows`
+```bash
+#Start psql
+psql postgres postgres
+```
+_Resolve failed authentication -> https://stackoverflow.com/questions/55038942/fatal-password-authentication-failed-for-user-postgres-postgresql-11-with-pg_
+* Create Role
+
+```sql
+CREATE ROLE full_stack_user SUPERUSER LOGIN PASSWORD 'set-your-password';
+```
+* Create Databases
+
+```sql
+CREATE DATABASE storefront_db;
+CREATE DATABASE storefront_test_db;
+```
+
+* Grant Privileges
+
+```sql
+GRANT ALL PRIVILEGES ON DATABASE storefront_db TO full_stack_user;
+GRANT ALL PRIVILEGES ON DATABASE storefront_test_db TO full_stack_user;
+```
+
 #### CREATE DATABASE MIGRATION 
 
 ```bash
 npm run migrate-up
+```
+
+#### REMOVING USER ROLE 
+
+```sql
+REASSIGN OWNED BY full_stack_user TO postgres;
+DROP OWNED BY full_stack_user;
+DROP USER full_stack_user;
 ```
 <br/>
 

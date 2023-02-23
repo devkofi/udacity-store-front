@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var product_1 = require("../models/product");
 var popularProducts_1 = require("../service/popularProducts");
 var productsByCategory_1 = require("../service/productsByCategory");
@@ -93,7 +93,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 new_product = {
                     name: req.body.name,
                     price: req.body.price,
-                    category: req.body.category,
+                    category: req.body.category
                 };
                 return [4 /*yield*/, create_product.create(new_product).then(function (item) {
                         res.json(item);
@@ -120,7 +120,7 @@ var update = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                         .update(req.params.id, {
                         name: req.body.name,
                         price: req.body.price,
-                        category: req.body.category,
+                        category: req.body.category
                     })
                         .then(function (item) {
                         res.json(item);
@@ -143,7 +143,7 @@ var deleteProduct = function (req, res) { return __awaiter(void 0, void 0, void 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, create_product.delete(req.params.id).then(function () {
+                return [4 /*yield*/, create_product["delete"](req.params.id).then(function () {
                         res.send("Successfully Deleted item");
                     })];
             case 1:
@@ -227,6 +227,6 @@ var product_routes = function (app) {
     app.get("/products/category/:category", productsByCategory);
     app.post("/products", auth_1.verifyAuthToken, create); //create
     app.put("/products/update", auth_1.verifyAuthToken, update); //update
-    app.delete("/products/:id", auth_1.verifyAuthToken, deleteProduct); //delete
+    app["delete"]("/products/:id", auth_1.verifyAuthToken, deleteProduct); //delete
 };
-exports.default = product_routes;
+exports["default"] = product_routes;
