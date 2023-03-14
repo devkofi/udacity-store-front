@@ -166,6 +166,11 @@ DROP USER full_stack_user;
 ```
 <br/>
 
+## DATABASE SCHEMA
+
+![](<https://github.com/devkofi/udacity-store-front/blob/master/schema.png>)
+
+
 ---
 ## START PROJECT
 
