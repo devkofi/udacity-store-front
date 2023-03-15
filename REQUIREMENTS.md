@@ -45,7 +45,47 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ---
 
+## DATABASE SCHEMA
 
+### _USERS_:
+
+| COLUMN       | DATA TYPE      |
+| :---         |    ----:       |          
+| id           | integer        | 
+| first_name   | varchar(255)   | 
+| last_name    | varchar(255)   | 
+| email        | varchar(255)   | 
+| password     | varchar(255)   | 
+
+### _ORDERS_:
+
+| COLUMN              | DATA TYPE      |
+| :---                |    ----:       |          
+| id                  | integer        | 
+| product_id          | integer        | 
+| product_quantity    | integer        | 
+| user_id             | integer        | 
+| order_status        | varchar(10)    | 
+
+### _PRODUCTS_:
+
+| COLUMN       | DATA TYPE      |
+| :---         |    ----:       |          
+| id           | integer        | 
+| name         | varchar(255)   | 
+| price        | decimal        | 
+| category     | varchar(255)   | 
+
+### _ORDER-PRODUCTS_:
+
+| COLUMN        | DATA TYPE   |
+| :---          |    ----:    |          
+| id            | integer     | 
+| order_id      | integer     | 
+| product_id    | integer     | 
+| quantity      | integer     | 
+
+![](<https://github.com/devkofi/udacity-store-front/blob/master/schema.png>)
 
 
 # END POINTS

@@ -4,6 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import product_routes from "./handler/product";
 import order_routes from "./handler/order";
+import order_products_routes from "./handler/orderProducts";
 import { user_routes } from "./handler/user";
 import cookieParser from "cookie-parser";
 
@@ -38,6 +39,7 @@ app.get("/users/signup", (req: express.Request, res: express.Response) => {
 user_routes(app);
 product_routes(app);
 order_routes(app);
+order_products_routes(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
